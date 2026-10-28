@@ -1,0 +1,9 @@
+.welcome-main { padding-block: 96px 120px; }
+.welcome-intro { max-width: 760px; display: grid; gap: 24px; }
+.welcome-lead { font-size: 20px; line-height: 30px; }
+.welcome-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+.welcome-actions .button { min-width: 140px; }
+@media (max-width: 959px) {
+  .welcome-main { padding-block: 56px 80px; }
+  .welcome-lead { font-size: 18px; line-height: 28px; }
+}

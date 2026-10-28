@@ -3,7 +3,7 @@
 ## Metadata
 
 - Status: `in-progress`
-- Updated: 2026-09-27
+- Updated: 2026-10-28
 - Files: `SiteHeader.tsx`, `SiteHeader.css`
 
 ## Purpose
@@ -15,6 +15,8 @@ Provide the marketplace identity and access to its six main destinations.
 - [x] Show Homes, Roommates, Community, For managers, Saved, and Account.
 - [x] Use anchors that preserve native link behavior.
 - [x] Indicate the current destination.
+- [x] Link the wordmark to the welcome page at `/`.
+- [x] Show Log in and Sign up links on `/`, `/login`, and `/signup` only.
 - [x] Show a compact menu below 960px.
 - [x] Expose expanded state and a skip link.
 - [x] Close the menu with Escape and return focus to its button.
@@ -29,6 +31,9 @@ Provide the marketplace identity and access to its six main destinations.
 `savedCount` controls the heart and aggregate saved-home count.
 The component owns menu visibility. The location pathname determines the active link.
 Links use `/listings`, `/roommates`, `/community`, `/managers`, `/saved`, and `/account/personal`.
+The wordmark links to `/`.
+On `/`, `/login`, and `/signup`, Log in (`/login`) and Sign up (`/signup`) follow the six destinations. Each shows its active state on its own path.
+Homes is active on listing detail paths, not on the welcome page.
 The Account link shows its active state on all singular and plural account section paths.
 For managers stays active across every manager workspace subpath.
 

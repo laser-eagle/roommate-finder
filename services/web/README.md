@@ -22,6 +22,7 @@ Open `http://127.0.0.1:5174/listings`.
 
 ## Routes and interactions
 
+- `/` opens the welcome page with Sign up and Log in actions.
 - `/listings` filters and sorts three homes by location, housing type, total monthly cost, and availability.
 - `/listings/{id}` shows the matching home, costs, household details, and contact dialogs.
 - `/saved` shows session favorites. Saving and removing homes updates the shared header count.
@@ -36,7 +37,7 @@ Open `http://127.0.0.1:5174/listings`.
 - `/account/personal` shows locked personal details and an email verification indicator. The edit icon opens an authentication check.
 - `/account/preferences`, `/account/notifications`, and `/account/security` open their corresponding settings sections.
 - `/account`, `/accounts`, and plural section aliases resolve to canonical account paths.
-- `/` opens the original Ballard detail. Unknown listing paths show the unavailable-listing state.
+- `/listings/ballard-room` opens the original Ballard detail. Unknown listing paths show the unavailable-listing state.
 
 Saved home IDs persist in session storage, including migration from the older single-home favorite.
 Account section links preserve local settings and drafts, support Back/Forward, and relock personal details when changing sections.

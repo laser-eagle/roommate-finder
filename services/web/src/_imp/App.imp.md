@@ -4,7 +4,7 @@
 
 - Status: `complete`
 - Scope: route selection for the current mockups
-- Updated: 2026-09-27
+- Updated: 2026-10-28
 - File: `App.tsx`
 
 ## Purpose and usage
@@ -14,6 +14,7 @@
 
 ## Requirements and design
 
+- [x] Select WelcomeView for `/`, including a trailing slash.
 - [x] Select ManagersView for the `/managers` prefix, including workspace detail paths.
 - [x] Select AccountsView for `/account` and `/accounts` prefixes, including section paths.
 - [x] Select DiscoveryView for Homes, Saved, Roommates, and Community, with optional trailing slashes.
@@ -34,6 +35,7 @@ Production hosting must provide the same fallback before these routes are deploy
 - [x] The managers route mounts its workspace and updates the document title.
 - [x] The trailing-slash route and listing-detail regression pass browser review.
 - [x] Both account paths, trailing slashes, and the shared Account link open account settings.
+- [x] `/` opens WelcomeView. The Ballard sample detail remains at `/listings/ballard-room`.
 - [x] All discovery destinations render at desktop, tablet, and 320px widths without construction copy.
 
 ## Limitations

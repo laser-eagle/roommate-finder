@@ -55,7 +55,7 @@ The mobile about section remains visible between inquiry and match information.
 <ListingDetailView />
 ```
 
-`/` and `/listings/ballard-room` show the sample detail.
+`/listings/ballard-room` shows the sample detail. `/` opens WelcomeView.
 Header destinations use real URLs. `/managers` opens the separate ManagersView mockup.
 `/accounts` and its `/account` alias open AccountsView.
 DiscoveryView handles `/listings`, `/saved`, `/roommates`, and `/community`.
