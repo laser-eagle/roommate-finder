@@ -30,6 +30,7 @@ DiscoveryView owns the saved collection through useSavedHomes.
 - [x] On `/listings`, show Commute time unavailable on each card.
 - [x] Reset the commute fields with Clear filters.
 - [x] Keep Saved homes (`/saved`) without the map toggle and commute fields.
+- [x] On `/listings` and `/saved`, show a Compare checkbox on each card (up to four) and a Compare (n) button once two or more are checked. The button opens CompareDialog (SRS Feature 15).
 - [ ] Show results on a real map, search within the visible map area, and calculate commute times through a maps service.
 - [ ] Load publishable inventory and saved items from authorized services.
 
@@ -40,7 +41,8 @@ Other fixtures use neutral image placeholders. Their prices, dates, descriptions
 ListingDetailView consumes the same catalog, so card and detail content agree.
 Filtering operates on computed monthly totals in cents. Sorting uses ISO availability dates or computed costs.
 An unknown total cannot pass a maximum-cost filter.
-The results view (`list` or `map`) and commute values are local state. View starts as List; Travel mode starts as Transit; Maximum travel time starts as Any.
+The results view (`list` or `map`), commute values, and comparison selection are local state. The comparison keeps only checked homes that are still visible.
+The results view (`list` or `map`) and commute values reset on refresh. View starts as List; Travel mode starts as Transit; Maximum travel time starts as Any.
 The commute fields and Search this area do not change results, because no maps service is connected.
 The map region is a `section` labeled Map. Its placeholder icon is decorative. Map view uses a single card column beside the map on desktop, two equal columns below 1100px, and stacks the map above the cards below 800px.
 
@@ -58,5 +60,5 @@ The map region is a `section` labeled Map. Its placeholder icon is decorative. M
 
 ## Limitations
 
-Only three fixture homes exist. The map is a blank placeholder and commute times are not calculated. Advanced amenities, comparison tools, and saved searches remain later work.
+Only three fixture homes exist. The map is a blank placeholder and commute times are not calculated. Advanced amenities and saved searches remain later work.
 Session favorites are not account-level persistence.

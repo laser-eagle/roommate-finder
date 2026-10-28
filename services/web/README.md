@@ -29,6 +29,7 @@ Open `http://127.0.0.1:5174/listings`.
 - `/listings/{id}` shows the matching home, costs, household details, and contact dialogs. Managed listings link to their business profile.
 - `/business/pine-street-homes` shows the sample business profile with contact details, properties, staff, and a verified badge. The manager workspace sidebar links to it.
 - `/saved` shows session favorites. Saving and removing homes updates the shared header count.
+- On `/listings` and `/saved`, checking Compare on two to four homes shows Compare (n), which opens a side-by-side comparison of cost, features, availability, commute, and preference fit.
 - `/roommates` filters profiles, shows household preferences and references, and supports a local connection-request state and a Write a reference form.
 - `/community` filters posts and supports local publishing, comments, likes, and group membership.
 - `/managers` provides listing filters, draft creation, editing, status changes, inquiries, and tours.

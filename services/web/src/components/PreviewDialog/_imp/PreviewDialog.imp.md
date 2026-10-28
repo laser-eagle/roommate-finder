@@ -3,7 +3,7 @@
 ## Metadata
 
 - Status: `in-progress`
-- Updated: 2026-09-27
+- Updated: 2026-10-28
 - Files: `PreviewDialog.tsx`, `PreviewDialog.css`
 
 ## Purpose
@@ -20,6 +20,7 @@ Contain a local interaction preview with modal focus behavior.
 
 `title` supplies the accessible dialog name. `children` supplies the content.
 `onClose` tells the owner to remove the dialog.
+`wide` (optional, default `false`) widens the dialog to up to 960px, for content such as the comparison table.
 
 ## Requirements and design
 

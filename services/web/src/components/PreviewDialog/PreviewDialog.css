@@ -3,6 +3,7 @@
   padding: 24px 32px 32px; color: var(--ink); background: var(--canvas);
   border: 1px solid var(--line); border-radius: 12px; box-shadow: 0 24px 100px #14241d33;
 }
+.preview-dialog-wide { width: min(960px, calc(100% - 32px)); }
 .preview-dialog::backdrop { background: #182d2380; }
 .dialog-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 16px; }
 .dialog-close { width: 44px; height: 44px; border: 0; background: transparent; display: grid; place-items: center; }

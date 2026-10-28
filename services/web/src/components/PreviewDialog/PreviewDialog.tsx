@@ -3,8 +3,8 @@ import type { ReactNode } from 'react'
 import { Icon } from '../Icon'
 import './PreviewDialog.css'
 
-export function PreviewDialog({ title, children, onClose }: {
-  title: string; children: ReactNode; onClose: () => void
+export function PreviewDialog({ title, children, onClose, wide = false }: {
+  title: string; children: ReactNode; onClose: () => void; wide?: boolean
 }) {
   const dialog = useRef<HTMLDialogElement>(null)
 
@@ -22,7 +22,7 @@ export function PreviewDialog({ title, children, onClose }: {
   }, [])
 
   return (
-    <dialog ref={dialog} className="preview-dialog" aria-labelledby="dialog-title" onCancel={onClose}
+    <dialog ref={dialog} className={wide ? 'preview-dialog preview-dialog-wide' : 'preview-dialog'} aria-labelledby="dialog-title" onCancel={onClose}
       onKeyDown={(event) => {
         if (event.key !== 'Tab') return
         const targets = [...event.currentTarget.querySelectorAll<HTMLElement>(
