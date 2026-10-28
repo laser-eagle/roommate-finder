@@ -1,0 +1,25 @@
+.shortlist-main { padding-block: 36px 64px; }
+.shortlist-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 32px; }
+.shortlist-heading h1 { font-size: 52px; line-height: 60px; margin-block: 16px 12px; }
+.shortlist-heading > .button { flex-shrink: 0; }
+.shortlist-items { list-style: none; margin: 0; padding: 0; display: grid; gap: 20px; }
+.shortlist-item { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 1.2fr); gap: 24px; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+.shortlist-home h2 { font-size: 26px; line-height: 32px; margin-block: 10px 8px; }
+.shortlist-home h2 a { text-decoration: none; }
+.shortlist-home h2 a:hover { text-decoration: underline; }
+.shortlist-item h3 { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 12px; font: 600 14px/20px var(--sans); }
+.shortlist-votes ul, .shortlist-comments ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.shortlist-votes li { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 14px; }
+.shortlist-votes strong { font-weight: 600; color: var(--brand); }
+.shortlist-vote-buttons { display: inline-flex; padding: 3px; border: 1px solid var(--line); border-radius: 5px; background: var(--canvas); }
+.shortlist-vote-buttons button { min-width: 52px; min-height: 36px; padding: 0 12px; border: 0; border-radius: 3px; background: transparent; font-size: 13px; color: var(--muted); }
+.shortlist-vote-buttons [aria-pressed='true'] { background: var(--brand); color: white; font-weight: 600; }
+.shortlist-comments li { display: grid; gap: 2px; padding: 10px 12px; background: var(--canvas); border-radius: 4px; }
+@media (max-width: 959px) {
+  .shortlist-item { grid-template-columns: 1fr; gap: 20px; }
+}
+@media (max-width: 599px) {
+  .shortlist-heading { flex-direction: column; align-items: stretch; }
+  .shortlist-heading h1 { font-size: 42px; line-height: 48px; }
+  .shortlist-item { padding: 20px; }
+}

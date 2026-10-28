@@ -2,6 +2,7 @@
 .discovery-heading { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 32px; }
 .discovery-heading h1 { font-size: 52px; line-height: 60px; margin-block: 16px 12px; }
 .discovery-heading > .button { flex-shrink: 0; }
+.discovery-heading-actions { display: flex; flex-wrap: wrap; gap: 12px; flex-shrink: 0; }
 .discovery-filters { display: grid; grid-template-columns: 1.3fr 1fr 1fr auto; gap: 24px; align-items: end; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
 .discovery-filters label { display: grid; gap: 8px; min-width: 0; font-size: 12px; font-weight: 500; }
 .discovery-filters input, .discovery-filters select { min-height: 46px; width: 100%; min-width: 0; padding: 10px 12px; border: 1px solid #bac5bb; border-radius: 4px; background: var(--surface); font-size: 14px; }

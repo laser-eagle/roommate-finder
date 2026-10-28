@@ -6,6 +6,7 @@ import { WelcomeView } from './features/auth/WelcomeView'
 import { SignUpView } from './features/auth/SignUpView'
 import { LogInView } from './features/auth/LogInView'
 import { BusinessProfileView } from './features/business/BusinessProfileView'
+import { ShortlistView } from './features/shortlist/ShortlistView'
 
 export default function App() {
   const path = window.location.pathname.replace(/\/+$/, '') || '/'
@@ -13,6 +14,7 @@ export default function App() {
   if (path === '/signup') return <SignUpView />
   if (path === '/login') return <LogInView />
   if (/^\/business(\/|$)/.test(path)) return <BusinessProfileView />
+  if (path === '/shortlist') return <ShortlistView />
   if (/^\/accounts?(\/|$)/.test(path)) return <AccountsView />
   if (/^\/managers(\/|$)/.test(path)) return <ManagersView />
   if (path === '/listings' || path === '/saved' || path === '/roommates' || path === '/community') {

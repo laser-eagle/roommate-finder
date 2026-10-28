@@ -34,6 +34,7 @@ Links use `/listings`, `/roommates`, `/community`, `/managers`, `/saved`, and `/
 The wordmark links to `/`.
 On `/`, `/login`, and `/signup`, Log in (`/login`) and Sign up (`/signup`) follow the six destinations. Each shows its active state on its own path.
 Homes is active on listing detail paths, not on the welcome page.
+Saved is also active on `/shortlist`.
 The Account link shows its active state on all singular and plural account section paths.
 For managers stays active across every manager workspace subpath.
 

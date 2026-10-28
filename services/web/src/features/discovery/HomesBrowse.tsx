@@ -38,7 +38,7 @@ export function HomesBrowse({ savedOnly, savedIds, onSave }: { savedOnly: boolea
     </article>
 
   return <>
-    <div className="discovery-heading"><div><span className="eyebrow muted">{savedOnly ? 'Your shortlist' : 'Housing search'}</span><h1>{savedOnly ? 'Saved homes' : 'Find a home'}</h1><p className="muted">{savedOnly ? 'Review the homes you saved and compare their costs.' : 'Search by location, housing type, and total monthly cost.'}</p></div>{savedOnly && <a href="/listings" className="button">Browse homes<Icon name="arrow" /></a>}</div>
+    <div className="discovery-heading"><div><span className="eyebrow muted">{savedOnly ? 'Your shortlist' : 'Housing search'}</span><h1>{savedOnly ? 'Saved homes' : 'Find a home'}</h1><p className="muted">{savedOnly ? 'Review the homes you saved and compare their costs.' : 'Search by location, housing type, and total monthly cost.'}</p></div>{savedOnly && <div className="discovery-heading-actions"><a href="/shortlist" className="button">Shared shortlist<Icon name="arrow" /></a><a href="/listings" className="button">Browse homes<Icon name="arrow" /></a></div>}</div>
     <div className="discovery-filters" role="search" aria-label="Filter homes">
       <label>Location<input type="search" placeholder="City or neighborhood" value={location} onChange={(event) => setLocation(event.target.value)} /></label>
       <label>Housing type<select value={type} onChange={(event) => setType(event.target.value)}><option>All housing</option><option>Private room</option><option>Apartment</option><option>Sublet</option></select></label>

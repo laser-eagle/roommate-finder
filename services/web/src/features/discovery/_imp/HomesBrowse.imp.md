@@ -30,6 +30,7 @@ DiscoveryView owns the saved collection through useSavedHomes.
 - [x] On `/listings`, show Commute time unavailable on each card.
 - [x] Reset the commute fields with Clear filters.
 - [x] Keep Saved homes (`/saved`) without the map toggle and commute fields.
+- [x] On Saved homes, link to the Shared shortlist (`/shortlist`) beside Browse homes.
 - [x] On `/listings` and `/saved`, show a Compare checkbox on each card (up to four) and a Compare (n) button once two or more are checked. The button opens CompareDialog (SRS Feature 15).
 - [ ] Show results on a real map, search within the visible map area, and calculate commute times through a maps service.
 - [ ] Load publishable inventory and saved items from authorized services.

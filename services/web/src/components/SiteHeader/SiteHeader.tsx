@@ -30,7 +30,7 @@ export function SiteHeader({ savedCount }: { savedCount: number }) {
         <nav id="site-navigation" className={open ? 'site-navigation is-open' : 'site-navigation'} aria-label="Main">
           {navigation.map(([label, href], index) => (
             <a key={href} href={href} className={index === 4 ? 'account-start' : undefined}
-              aria-current={(pathname === href || (label === 'Homes' && isHome) || (label === 'For managers' && pathname.startsWith('/managers/')) || (label === 'Account' && /^\/accounts?(\/|$)/.test(pathname))) ? 'page' : undefined}>
+              aria-current={(pathname === href || (label === 'Homes' && isHome) || (label === 'Saved' && pathname === '/shortlist') || (label === 'For managers' && pathname.startsWith('/managers/')) || (label === 'Account' && /^\/accounts?(\/|$)/.test(pathname))) ? 'page' : undefined}>
               {label === 'Saved' && <Icon name="heart" filled={savedCount > 0} />}
               {label}{label === 'Saved' && savedCount > 0 && <span className="saved-count">{savedCount}</span>}
             </a>
