@@ -56,6 +56,7 @@ Both layouts reuse the same mutation handlers, notices, and ManagerDialog.
 
 State starts as independent copies of the fixture arrays.
 Updates replace records by stable ID. Summaries derive from the same records.
+In the workspace, ManagersView also owns the rental application records from `applications.mock.ts` and passes status and note handlers to ManagerWorkspace.
 New listings receive a unique ID and always start as Draft.
 Workspace bulk pause/resume handlers exclude drafts and only change the selected IDs supplied by inventory.
 Draft creation and editing clear filters so the saved record stays visible.

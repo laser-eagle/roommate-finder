@@ -19,6 +19,7 @@
 | `/managers/inquiries/pending` | Inquiries requiring a reply |
 | `/managers/tours` | All tours |
 | `/managers/tours/pending` | Tours requiring confirmation |
+| `/managers/applications` | Rental applications for review |
 
 The query `listing={id}` scopes activity to a listing and survives refresh.
 The earlier `/managers?view=workspace` URL remains a workspace entry alias.

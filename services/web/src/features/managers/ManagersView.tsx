@@ -8,6 +8,7 @@ import { ManagerDialog } from './ManagerDialog'
 import { ManagerWorkspace } from './ManagerWorkspace'
 import { operationsInquiries, operationsListings, operationsTours } from './operations.data'
 import { initialInquiries, initialListings, initialTours } from './managers.mock'
+import { initialApplications } from './applications.mock'
 import type { ManagedListing, ManagerDialog as DialogState } from './managers.mock'
 import { useSavedHomes } from '../discovery/useSavedHomes'
 import './ManagersView.css'
@@ -17,6 +18,7 @@ export function ManagersView() {
   const [listings, setListings] = useState(() => structuredClone(workspace ? operationsListings : initialListings))
   const [inquiries, setInquiries] = useState(() => structuredClone(workspace ? operationsInquiries : initialInquiries))
   const [tours, setTours] = useState(() => structuredClone(workspace ? operationsTours : initialTours))
+  const [applications, setApplications] = useState(() => structuredClone(initialApplications))
   const [filter, setFilter] = useState<ListingFilter>('All')
   const [query, setQuery] = useState('')
   const [dialog, setDialog] = useState<DialogState | null>(null)
@@ -62,7 +64,9 @@ export function ManagersView() {
 
   return <>
     <SiteHeader savedCount={savedIds.length} />
-    {workspace ? <ManagerWorkspace listings={listings} inquiries={inquiries} tours={tours} notice={notice} onDismiss={() => setNotice('')}
+    {workspace ? <ManagerWorkspace listings={listings} inquiries={inquiries} tours={tours} applications={applications} notice={notice}
+      onApplicationStatus={(id, status) => { setApplications((current) => current.map((application) => application.id === id ? { ...application, status } : application)); if (status !== 'Under Review') setNotice(status === 'Info Requested' ? 'Information requested from the applicant.' : `Decision sent: ${status}.`) }}
+      onApplicationNote={(id, text) => { if (!text.trim()) return; setApplications((current) => current.map((application) => application.id === id ? { ...application, feedback: [...application.feedback, { id: `note-${Date.now()}`, author: 'You', text: text.trim() }] } : application)); setNotice('Note added.') }} onDismiss={() => setNotice('')}
       onCreate={() => setDialog({ type: 'listing', listing: null })} onEdit={(listing) => setDialog({ type: 'listing', listing })}
       onInquiry={(inquiry) => setDialog({ type: 'inquiry', inquiry })} onTour={(tour) => setDialog({ type: 'tour', tour })}
       onBulkStatus={(ids, status) => { setListings((current) => current.map((listing) => ids.includes(listing.id) && listing.status !== 'Draft' ? { ...listing, status } : listing)); setNotice(`${ids.length} ${ids.length === 1 ? 'listing' : 'listings'} ${status === 'Live' ? 'resumed' : 'paused'}.`) }} /> : <main id="main-content" className="container manager-main" tabIndex={-1}>

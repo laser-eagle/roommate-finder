@@ -49,6 +49,19 @@
 .ops-select-all { min-height: 34px; cursor: pointer; }
 .ops-select-all input { width: 16px; height: 16px; margin: 0; accent-color: var(--brand); }
 .ops-dialog-host .preview-dialog h2 { font: 600 24px/32px var(--sans); letter-spacing: normal; }
+.manager-application-details { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+.manager-application-details dt { font-size: 11px; color: var(--muted); margin-bottom: 4px; }
+.manager-application-details dd { font-size: 14px; }
+.manager-application-details ul { margin: 0; padding-left: 18px; }
+.manager-application-feedback { display: grid; gap: 12px; padding-top: 16px; border-top: 1px solid var(--line); }
+.manager-application-feedback h3 { font: 600 14px/20px var(--sans); }
+.manager-application-feedback ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.manager-application-feedback li { display: grid; justify-items: start; gap: 6px; padding: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; font-size: 13px; }
+.manager-application-feedback form { gap: 12px; margin-top: 4px; }
+.manager-application-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 20px; }
+@media (max-width: 400px) {
+  .manager-application-details, .manager-application-actions { grid-template-columns: 1fr; }
+}
 .ops-selection { display: flex; align-items: center; flex-wrap: wrap; gap: 6px 16px; padding: 8px 16px; background: var(--brand-soft); color: var(--brand); border-top: 1px solid var(--line); font-size: 12px; }
 .ops-selection button { min-height: 36px; padding: 6px 8px; border: 1px solid #c3d2c6; border-radius: 3px; background: white; font-weight: 500; }
 .ops-selection .ops-clear-selection { margin-left: auto; border: 0; background: transparent; font-weight: 400; }
@@ -156,8 +169,8 @@ button.ops-tag { min-height: 36px; }
   .ops-main { width: calc(100% - 32px); margin-top: 16px; }
   .ops-sidebar { display: block; padding-bottom: 12px; margin-bottom: 16px; }
   .ops-organization { display: none; }
-  .ops-sidebar nav { justify-content: space-between; gap: 6px; }
-  .ops-sidebar nav a { flex: 1; min-width: 0; padding: 8px; gap: 6px; }
+  .ops-sidebar nav { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .ops-sidebar nav a { min-width: 0; padding: 8px; gap: 6px; }
   .ops-sidebar nav a > svg { display: none; }
   .ops-heading { align-items: flex-start; flex-wrap: wrap; gap: 14px; }
   .ops-heading-actions { width: 100%; justify-content: space-between; }
