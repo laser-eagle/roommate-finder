@@ -39,7 +39,7 @@ The component supplies the SiteHeader, the main landmark, and the page title `Si
 The form is uncontrolled. On submit, the selected `role` checkbox values are read from FormData and mapped to a destination.
 The form uses `noValidate` and has no required fields, so submission always continues.
 Nothing typed into the form is stored or sent.
-`AuthForm.css` styles the panel, labeled inputs, the role fieldset, and the full-width submit button. It is intended to be shared with the login screen.
+`AuthForm.css` styles the panel, labeled inputs, the role fieldset, and the full-width submit button. It is shared with LogInView.
 
 ## Acceptance criteria
 

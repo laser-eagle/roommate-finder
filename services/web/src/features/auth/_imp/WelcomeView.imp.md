@@ -2,7 +2,7 @@
 
 ## Metadata
 
-- Status: `in-progress`
+- Status: `complete`
 - Scope: welcome page for visitors, with entry points to sign up and log in
 - Route: `/`
 - Updated: 2026-10-28
@@ -20,7 +20,7 @@ Introduce Roommate Finder to visitors and lead them to account creation or login
 - [x] Use the shared SiteHeader, which shows Log in and Sign up links on this page.
 - [x] Use the shared tokens and button classes from `index.css`.
 - [x] Sign-up screen exists at `/signup`.
-- [ ] Login screen exists at `/login`.
+- [x] Login screen exists at `/login`.
 
 ## Usage
 
@@ -43,9 +43,9 @@ Spacing reduces below 960px. The action buttons wrap on narrow screens.
 
 - [x] `/` shows the welcome heading, description, and both actions.
 - [x] Sign up and Log in navigate to `/signup` and `/login`.
-- [ ] Both destinations show their screens instead of the unavailable-listing state.
+- [x] Both destinations show their screens instead of the unavailable-listing state.
   - [x] `/signup` shows SignUpView.
-  - [ ] `/login` shows the login screen.
+  - [x] `/login` shows LogInView.
 
 ## Limitations and open questions
 
@@ -55,6 +55,6 @@ The heading text is not specified in the SRS.
 ## Completion checklist
 
 - [x] Welcome page mockup exists.
-- [ ] Sign-up and login destinations exist.
+- [x] Sign-up and login destinations exist.
   - [x] Sign-up destination exists.
-  - [ ] Login destination exists.
+  - [x] Login destination exists.
