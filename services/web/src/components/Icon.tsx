@@ -1,4 +1,4 @@
-type IconName = 'heart' | 'arrow' | 'check' | 'close' | 'menu' | 'home' | 'lock' | 'unlock' | 'edit' | 'verified' | 'list' | 'inbox' | 'calendar' | 'search'
+type IconName = 'heart' | 'arrow' | 'check' | 'close' | 'menu' | 'home' | 'lock' | 'unlock' | 'edit' | 'verified' | 'list' | 'inbox' | 'calendar' | 'search' | 'map'
 
 const paths: Record<IconName, string> = {
   heart: 'M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z',
@@ -15,6 +15,7 @@ const paths: Record<IconName, string> = {
   inbox: 'm3 4-2 10v6h22v-6L21 4ZM1 14h6l2 3h6l2-3h6',
   calendar: 'M4 5h16v16H4ZM4 10h16M8 2v6M16 2v6M8 14h2M14 14h2',
   search: 'M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Zm-2 5 6 6',
+  map: 'm9 4-6 2v14l6-2 6 2 6-2V4l-6 2Zm0 0v14m6-12v14',
 }
 
 export function Icon({ name, filled = false }: { name: IconName; filled?: boolean }) {

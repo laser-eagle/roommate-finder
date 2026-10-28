@@ -4,7 +4,7 @@
 
 - Status: `in-progress`
 - Scope: home search and saved-home interface
-- Updated: 2026-09-27
+- Updated: 2026-10-28
 - Files: `HomesBrowse.tsx`, `housing.data.ts`, related rules in `DiscoveryView.css`
 
 ## Purpose and usage
@@ -24,6 +24,13 @@ DiscoveryView owns the saved collection through useSavedHomes.
 - [x] Open a distinct listing detail for every home.
 - [x] Save or unsave individual homes and update the header count.
 - [x] Provide useful empty states for an empty shortlist or unmatched filters.
+- [x] On `/listings`, offer a List | Map toggle in the results heading (SRS Feature 31).
+- [x] In Map view, show the result cards beside a blank map area with a neutral placeholder and a Search this area button.
+- [x] On `/listings`, show Commute fields: Destination, Travel mode (Walk, Bike, Transit, Drive), and Maximum travel time (Any, 15, 30, 45, 60 min).
+- [x] On `/listings`, show Commute time unavailable on each card.
+- [x] Reset the commute fields with Clear filters.
+- [x] Keep Saved homes (`/saved`) without the map toggle and commute fields.
+- [ ] Show results on a real map, search within the visible map area, and calculate commute times through a maps service.
 - [ ] Load publishable inventory and saved items from authorized services.
 
 ## Design
@@ -33,6 +40,9 @@ Other fixtures use neutral image placeholders. Their prices, dates, descriptions
 ListingDetailView consumes the same catalog, so card and detail content agree.
 Filtering operates on computed monthly totals in cents. Sorting uses ISO availability dates or computed costs.
 An unknown total cannot pass a maximum-cost filter.
+The results view (`list` or `map`) and commute values are local state. View starts as List; Travel mode starts as Transit; Maximum travel time starts as Any.
+The commute fields and Search this area do not change results, because no maps service is connected.
+The map region is a `section` labeled Map. Its placeholder icon is decorative. Map view uses a single card column beside the map on desktop, two equal columns below 1100px, and stacks the map above the cards below 800px.
 
 ## Testing and acceptance
 
@@ -43,8 +53,10 @@ An unknown total cannot pass a maximum-cost filter.
 - [x] An empty shortlist links to Homes and recovers after saving a home.
 - [x] An unmatched location shows filter guidance, and clearing filters restores all homes.
 - [x] Layouts fit at 320, 768, and 1440px.
+- [x] Map view shows the Map region, Search this area, and all matching cards at 1280, 900, and 390px without horizontal overflow.
+- [x] Clear filters resets Destination to empty, Travel mode to Transit, and Maximum travel time to Any.
 
 ## Limitations
 
-Only three fixture homes exist. Maps, advanced amenities, comparison tools, and saved searches remain later work.
+Only three fixture homes exist. The map is a blank placeholder and commute times are not calculated. Advanced amenities, comparison tools, and saved searches remain later work.
 Session favorites are not account-level persistence.
