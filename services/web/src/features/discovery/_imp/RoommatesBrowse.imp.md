@@ -10,7 +10,7 @@
 ## Purpose and requirements
 
 - [x] Show representative profiles with biographies, target areas, budgets, dates, and household preferences.
-- [x] Filter profiles by name or neighborhood and housing plans.
+- [x] Filter profiles by name or neighborhood and housing plans, initialized from the `q` and `plans` query parameters.
 - [x] Open a profile dialog with the same person and facts as its card.
 - [x] Show a connection request state without removing the profile context.
 - [x] Prevent a duplicate connection request in the current page session.

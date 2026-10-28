@@ -19,7 +19,8 @@ DiscoveryView owns the saved collection through useSavedHomes.
 - [x] Filter by city or neighborhood, housing type, and maximum total monthly cost.
 - [x] Include fees and estimated utilities in budget filtering.
 - [x] Sort by availability or lowest total monthly cost.
-- [x] Initialize location from city or neighborhood query parameters.
+- [x] Initialize location from city or neighborhood query parameters, housing type from `type`, and maximum total from `max`.
+- [x] On `/listings`, show a Saved searches button that opens SavedSearchesDialog (SRS Features 23 and 41).
 - [x] Show base rent, estimated total, availability, and location on each card.
 - [x] Open a distinct listing detail for every home.
 - [x] Save or unsave individual homes and update the header count.

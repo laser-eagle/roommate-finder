@@ -12,8 +12,9 @@ const people = [
 export type RoommatePerson = typeof people[number]
 
 export function RoommatesBrowse() {
-  const [query, setQuery] = useState('')
-  const [intent, setIntent] = useState('Everyone')
+  const params = new URLSearchParams(window.location.search)
+  const [query, setQuery] = useState(params.get('q') ?? '')
+  const [intent, setIntent] = useState(params.get('plans') ?? 'Everyone')
   const [selected, setSelected] = useState<RoommatePerson | null>(null)
   const [connections, setConnections] = useState<string[]>([])
   const visible = people.filter((person) => `${person.name} ${person.area}`.toLowerCase().includes(query.trim().toLowerCase()) && (intent === 'Everyone' || intent === person.looking))

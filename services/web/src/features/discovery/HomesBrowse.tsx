@@ -3,12 +3,14 @@ import { Icon } from '../../components/Icon'
 import { estimatedMonthlyTotal, formatLocalDate, formatMoney } from '../listing-detail/costs'
 import { homes } from './housing.data'
 import { CompareDialog } from './CompareDialog'
+import { SavedSearchesDialog } from '../searches/SavedSearchesDialog'
+import { initialSavedSearches } from '../searches/savedSearches.data'
 
 export function HomesBrowse({ savedOnly, savedIds, onSave }: { savedOnly: boolean; savedIds: string[]; onSave: (id: string) => void }) {
   const search = new URLSearchParams(window.location.search)
   const [location, setLocation] = useState(search.get('neighborhood') ?? search.get('city') ?? '')
-  const [type, setType] = useState('All housing')
-  const [budget, setBudget] = useState('')
+  const [type, setType] = useState(search.get('type') ?? 'All housing')
+  const [budget, setBudget] = useState(search.get('max') ?? '')
   const [sort, setSort] = useState('Available soonest')
   const [notice, setNotice] = useState('')
   const [view, setView] = useState<'list' | 'map'>('list')
@@ -17,6 +19,8 @@ export function HomesBrowse({ savedOnly, savedIds, onSave }: { savedOnly: boolea
   const [maxTime, setMaxTime] = useState('Any')
   const [compareIds, setCompareIds] = useState<string[]>([])
   const [comparing, setComparing] = useState(false)
+  const [savedSearches, setSavedSearches] = useState(() => structuredClone(initialSavedSearches))
+  const [searchesOpen, setSearchesOpen] = useState(false)
   const visible = homes.filter((home) => (!savedOnly || savedIds.includes(home.id))
     && `${home.location.city} ${home.location.neighborhood}`.toLowerCase().includes(location.trim().toLowerCase())
     && (type === 'All housing' || home.type === type)
@@ -38,7 +42,7 @@ export function HomesBrowse({ savedOnly, savedIds, onSave }: { savedOnly: boolea
     </article>
 
   return <>
-    <div className="discovery-heading"><div><span className="eyebrow muted">{savedOnly ? 'Your shortlist' : 'Housing search'}</span><h1>{savedOnly ? 'Saved homes' : 'Find a home'}</h1><p className="muted">{savedOnly ? 'Review the homes you saved and compare their costs.' : 'Search by location, housing type, and total monthly cost.'}</p></div>{savedOnly && <div className="discovery-heading-actions"><a href="/shortlist" className="button">Shared shortlist<Icon name="arrow" /></a><a href="/listings" className="button">Browse homes<Icon name="arrow" /></a></div>}</div>
+    <div className="discovery-heading"><div><span className="eyebrow muted">{savedOnly ? 'Your shortlist' : 'Housing search'}</span><h1>{savedOnly ? 'Saved homes' : 'Find a home'}</h1><p className="muted">{savedOnly ? 'Review the homes you saved and compare their costs.' : 'Search by location, housing type, and total monthly cost.'}</p></div>{!savedOnly && <button type="button" className="button" onClick={() => setSearchesOpen(true)}>Saved searches<Icon name="arrow" /></button>}{savedOnly && <div className="discovery-heading-actions"><a href="/shortlist" className="button">Shared shortlist<Icon name="arrow" /></a><a href="/listings" className="button">Browse homes<Icon name="arrow" /></a></div>}</div>
     <div className="discovery-filters" role="search" aria-label="Filter homes">
       <label>Location<input type="search" placeholder="City or neighborhood" value={location} onChange={(event) => setLocation(event.target.value)} /></label>
       <label>Housing type<select value={type} onChange={(event) => setType(event.target.value)}><option>All housing</option><option>Private room</option><option>Apartment</option><option>Sublet</option></select></label>
@@ -55,6 +59,7 @@ export function HomesBrowse({ savedOnly, savedIds, onSave }: { savedOnly: boolea
     {visible.length ? (showMap ? <div className="home-map-layout"><div className="home-map-list">{visible.map(renderHome)}</div><section className="home-map" aria-label="Map"><div className="home-map-placeholder" aria-hidden="true"><Icon name="map" /></div><button className="button home-map-search" type="button">Search this area</button></section></div> : <div className="home-results">{visible.map(renderHome)}</div>) : <div className="discovery-empty"><Icon name={savedOnly ? 'heart' : 'home'} /><h2>{savedOnly && !savedIds.length ? 'Save homes to build your shortlist' : 'No homes match these filters'}</h2><p className="muted">{savedOnly && !savedIds.length ? 'Select the heart on a home to find it here.' : 'Try a nearby location or increase your monthly budget.'}</p>{savedOnly && !savedIds.length ? <a href="/listings" className="button button-primary">Browse homes</a> : <button className="button" onClick={clearFilters}>Clear filters</button>}</div>}
     <p className="discovery-cost-note small muted">Monthly totals include rent, required fees, and estimated utilities. Move-in costs are listed separately on each home.</p>
     <p className="sr-only" role="status">{notice}</p>
+    {searchesOpen && <SavedSearchesDialog searches={savedSearches} onChange={(next) => setSavedSearches((current) => current.map((item) => item.id === next.id ? next : item))} onClose={() => setSearchesOpen(false)} />}
     {comparing && <CompareDialog homes={compared.map((id) => homes.find((home) => home.id === id)!)} savedIds={savedIds} onSave={onSave} onRemove={(id) => setCompareIds((current) => current.filter((item) => item !== id))} onClose={() => setComparing(false)} />}
   </>
 }
