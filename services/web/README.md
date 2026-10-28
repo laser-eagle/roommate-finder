@@ -53,6 +53,8 @@ Other interaction state resets on refresh or navigation outside the current feat
 No email, password reset, tour, connection request, post, or message is sent to a service.
 The success screens depict the intended product flow.
 
+Student verification in Security & privacy accepts campus emails ending in `@csulb.edu`. Its fixture code is `731905`; no email is delivered. Verify with a verification service succeeds without a code.
+
 The personal-details authentication adapter is a local fixture. Its code is `482631`; no email is delivered.
 Incorrect codes do not unlock editing. Codes and editing access expire after five minutes.
 Three incorrect attempts require a new challenge. Save, discard, manual lock, or account section navigation revokes editing access.

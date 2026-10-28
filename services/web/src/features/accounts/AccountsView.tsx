@@ -6,6 +6,9 @@ import { AccountHousing, AccountNotificationSettings } from './AccountPreference
 import { AccountSecurity } from './AccountSecurity'
 import { PasswordResetDialog } from './PasswordResetDialog'
 import { AccountProfileDialog } from './AccountProfileDialog'
+import { StudentVerificationDialog } from './StudentVerificationDialog'
+import type { StudentVerification } from './studentVerification.mock'
+import { StudentBadge } from '../../components/StudentBadge/StudentBadge'
 import { PersonalDetailsAuthDialog } from './PersonalDetailsAuthDialog'
 import { authWindowMs, canEditPersonalDetails } from './personalDetailsAuth.mock'
 import { useAccountRoute } from './useAccountRoute'
@@ -18,7 +21,8 @@ export function AccountsView() {
   const [account, setAccount] = useState(() => structuredClone(initialAccount))
   const [draft, setDraft] = useState(() => structuredClone(initialAccount))
   const [notice, setNotice] = useState('')
-  const [dialog, setDialog] = useState<'profile' | 'password' | 'verify' | null>(null)
+  const [dialog, setDialog] = useState<'profile' | 'password' | 'verify' | 'student' | null>(null)
+  const [student, setStudent] = useState<StudentVerification | null>(null)
   const [editExpiresAt, setEditExpiresAt] = useState(0)
   const onNavigate = useCallback(() => { setEditExpiresAt(0); setDialog(null); setNotice('') }, [])
   const { section, navigate } = useAccountRoute(onNavigate)
@@ -78,7 +82,7 @@ export function AccountsView() {
       <div className="account-heading"><h1>Account settings</h1><p className="muted">Manage your profile, housing preferences, and account access.</p></div>
       <div className="account-layout">
         <aside className="account-sidebar" aria-label="Account navigation">
-          <div className="account-identity"><span className="account-avatar" aria-hidden="true">{initials}</span><div><strong>{account.profile.fullName}</strong><span className="small muted">Personal account</span>{accountEmailVerified && <span className="account-verified account-identity-verified"><Icon name="verified" />Email verified</span>}</div></div>
+          <div className="account-identity"><span className="account-avatar" aria-hidden="true">{initials}</span><div><strong>{account.profile.fullName}</strong><span className="small muted">Personal account</span>{accountEmailVerified && <span className="account-verified account-identity-verified"><Icon name="verified" />Email verified</span>}{student && <span className="account-identity-verified"><StudentBadge /></span>}</div></div>
           <nav aria-label="Account sections">{accountSections.map((item) => <a key={item.id} href={item.path} aria-current={section === item.id ? 'page' : undefined} aria-controls="account-content" onClick={(event) => navigate(event, item.id)}>
             <span>{item.label}</span><Icon name="arrow" /></a>)}</nav>
           <a className="account-manager-link" href="/applications"><span className="eyebrow muted">Rental applications</span><span>My applications<Icon name="arrow" /></span></a>
@@ -88,7 +92,7 @@ export function AccountsView() {
           {section === 'profile' && <AccountProfile {...actions} value={draft.profile} editing={editExpiresAt > 0} onChange={(value) => update('profile', value)} onSecurity={(event) => navigate(event, 'privacy')} onEdit={() => setDialog('verify')} onLock={() => setEditExpiresAt(0)} />}
           {section === 'housing' && <AccountHousing {...actions} value={draft.housing} onChange={(value) => update('housing', value)} />}
           {section === 'notifications' && <AccountNotificationSettings {...actions} value={draft.notifications} onChange={(value) => update('notifications', value)} />}
-          {section === 'privacy' && <AccountSecurity {...actions} visible={draft.privacy.profileVisible} onChange={(profileVisible) => update('privacy', { profileVisible })} onResetPassword={() => setDialog('password')} />}
+          {section === 'privacy' && <AccountSecurity {...actions} visible={draft.privacy.profileVisible} onChange={(profileVisible) => update('privacy', { profileVisible })} onResetPassword={() => setDialog('password')} student={student} onVerifyStudent={() => setDialog('student')} />}
           {!section && <section className="account-panel"><div className="account-panel-heading"><h2>Account page not found</h2><p className="small muted">Choose a section to manage your account.</p><a className="account-text-button" href="/account/personal" onClick={(event) => navigate(event, 'profile')}>Go to personal details<Icon name="arrow" /></a></div></section>}
         </div>
         <aside className="account-summary" aria-label="Account summary">
@@ -100,7 +104,8 @@ export function AccountsView() {
       </div>
       <div role="status" className={`account-notice ${notice ? 'has-notice' : ''}`}>{notice}{notice && <button aria-label="Dismiss notification" onClick={() => setNotice('')}><Icon name="close" /></button>}</div>
     </main>
-    {dialog === 'profile' && <AccountProfileDialog account={account} onClose={() => setDialog(null)} />}
+    {dialog === 'profile' && <AccountProfileDialog account={account} student={student} onClose={() => setDialog(null)} />}
+    {dialog === 'student' && <StudentVerificationDialog onClose={() => setDialog(null)} onVerified={(verification) => { setStudent(verification); setDialog(null); setNotice('Student status verified.') }} />}
     {dialog === 'password' && <PasswordResetDialog email={accountEmail} onClose={() => setDialog(null)} />}
     {dialog === 'verify' && <PersonalDetailsAuthDialog email={accountEmail} onClose={() => setDialog(null)} onVerified={() => { setEditExpiresAt(Date.now() + authWindowMs); setDialog(null); setNotice('Account verified. Personal details are unlocked for editing.') }} />}
   </>

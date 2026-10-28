@@ -87,6 +87,8 @@
 .discovery-tags span { background: var(--canvas); color: var(--muted); border: 1px solid var(--line); padding: 5px 8px; font-size: 11px; border-radius: 4px; }
 .roommate-result > .discovery-text-button { width: 100%; }
 .roommate-dialog { display: grid; gap: 20px; }
+.roommate-dialog > .student-badge { justify-self: start; }
+.roommate-result .student-badge { margin-bottom: 6px; }
 .roommate-dialog .discovery-tags { margin: 0; }
 .roommate-dialog h3 { font: 500 14px/20px var(--sans); }
 .roommate-references { display: grid; gap: 12px; padding-top: 20px; border-top: 1px solid var(--line); }

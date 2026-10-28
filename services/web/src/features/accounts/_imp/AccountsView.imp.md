@@ -32,6 +32,7 @@ All account details are fictional. React state and a fixture authentication adap
 - [x] Require successful fixture verification before changing or saving personal details.
 - [x] Relock on save, discard, manual lock, section navigation, refresh, or five-minute expiry.
 - [x] Link to My applications (`/applications`) from the sidebar, above the manager workspace link.
+- [x] Hold the student verification result and show the verified-student badge in the sidebar identity, Security & privacy, and the Your profile dialog (SRS Feature 24).
 - [x] Show the user's references in the profile dialog and offer Request a reference with an email field and a confirmation.
 - [ ] Connect an authenticated account and persistent settings.
 
@@ -57,6 +58,7 @@ Section transitions preserve saved values and drafts while revoking personal-det
 | AccountPreferences | Housing preferences and notification forms |
 | AccountSecurity | Sign-in overview and profile visibility |
 | PasswordResetDialog | Reset-link request and email confirmation states |
+| StudentVerificationDialog | Campus email code or verification-service flow for the verified-student badge |
 | AccountProfileDialog | Public profile preview, the user's references, and the Request a reference form and confirmation |
 | AccountControls | Shared save bar and accessible switch control |
 | accounts.mock.ts | Types, section labels, fictional initial settings, and the user's sample reference |

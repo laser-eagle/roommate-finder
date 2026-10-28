@@ -4,13 +4,14 @@
 
 - Status: `complete`
 - Scope: security and privacy mockup
-- Updated: 2026-09-27
+- Updated: 2026-10-28
 - File: `AccountSecurity.tsx`
 
 ## Purpose and requirements
 
 - [x] Show the email sign-in method and current session using fixture data.
 - [x] Open PasswordResetDialog through the Password reset action without requesting credentials.
+- [x] Show Student verification: a Verify student status button, or the verified-student badge with the school and expiration once verified. The `student` and `onVerifyStudent` props supply the state and open StudentVerificationDialog.
 - [x] Provide a profile visibility switch with save and discard actions.
 - [x] Identify full name, email, and housing preferences as private fields.
 - [x] Use product-facing session labels and omit mockup qualifiers.

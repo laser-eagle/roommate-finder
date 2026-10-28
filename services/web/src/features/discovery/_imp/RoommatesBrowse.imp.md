@@ -15,6 +15,7 @@
 - [x] Show a connection request state without removing the profile context.
 - [x] Prevent a duplicate connection request in the current page session.
 - [x] Show the person's references in the profile dialog (SRS Feature 12).
+- [x] Show the verified-student badge on cards and in the profile dialog for verified students (Morgan Lee and Avery Chen; Riley Brooks is not verified).
 - [x] Offer Write a reference, which replaces the dialog content with a form for relationship and reference text.
 - [x] Show a Reference sent confirmation without adding the reference to the list.
 - [x] Provide a clear-filter action when no profiles match.

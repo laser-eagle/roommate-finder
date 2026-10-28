@@ -3,6 +3,7 @@ import type { FormEvent } from 'react'
 import { PreviewDialog } from '../../components/PreviewDialog/PreviewDialog'
 import { ReferenceList } from '../../components/References/ReferenceList'
 import { referencesFor } from './references.data'
+import { StudentBadge } from '../../components/StudentBadge/StudentBadge'
 import type { RoommatePerson } from './RoommatesBrowse'
 
 type View = 'profile' | 'write' | 'sent'
@@ -20,6 +21,7 @@ export function RoommateProfileDialog({ person, connected, onConnect, onClose }:
 
   return <PreviewDialog title={title} onClose={onClose}>
     {view === 'profile' && <div className="roommate-dialog">
+      {person.verifiedStudent && <StudentBadge />}
       <p className="small muted">{person.area} · {person.looking}</p>
       <p>{person.bio}</p>
       <dl><div><dt>Monthly budget</dt><dd>Up to ${person.budget.toLocaleString('en-US')}</dd></div><div><dt>Move-in date</dt><dd>{person.moveIn}</dd></div></dl>
