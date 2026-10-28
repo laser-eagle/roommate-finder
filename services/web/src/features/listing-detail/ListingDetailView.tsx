@@ -23,7 +23,7 @@ export function ListingDetailView() {
   const [contact, setContact] = useState<ContactAction | null>(null)
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const path = window.location.pathname.replace(/\/+$/, '') || '/'
-  const source = path === '/' ? homes[0] : homes.find((home) => path === `/listings/${home.id}`)
+  const source = homes.find((home) => path === `/listings/${home.id}`)
   const listing = listingForPreview(preview, source)
   const saved = savedIds.includes(listing.id)
   const isDetail = Boolean(source)

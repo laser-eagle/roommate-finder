@@ -19,7 +19,7 @@ Introduce Roommate Finder to visitors and lead them to account creation or login
 - [x] Provide a Log in action that links to `/login`.
 - [x] Use the shared SiteHeader, which shows Log in and Sign up links on this page.
 - [x] Use the shared tokens and button classes from `index.css`.
-- [ ] Sign-up screen exists at `/signup`.
+- [x] Sign-up screen exists at `/signup`.
 - [ ] Login screen exists at `/login`.
 
 ## Usage
@@ -44,6 +44,8 @@ Spacing reduces below 960px. The action buttons wrap on narrow screens.
 - [x] `/` shows the welcome heading, description, and both actions.
 - [x] Sign up and Log in navigate to `/signup` and `/login`.
 - [ ] Both destinations show their screens instead of the unavailable-listing state.
+  - [x] `/signup` shows SignUpView.
+  - [ ] `/login` shows the login screen.
 
 ## Limitations and open questions
 
@@ -54,3 +56,5 @@ The heading text is not specified in the SRS.
 
 - [x] Welcome page mockup exists.
 - [ ] Sign-up and login destinations exist.
+  - [x] Sign-up destination exists.
+  - [ ] Login destination exists.

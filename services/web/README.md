@@ -23,6 +23,7 @@ Open `http://127.0.0.1:5174/listings`.
 ## Routes and interactions
 
 - `/` opens the welcome page with Sign up and Log in actions.
+- `/signup` shows the sign-up form with full name, email, password, and one or more roles. Create account opens `/listings` when Renter or Roommate seeker is selected (or no role), otherwise `/managers`.
 - `/listings` filters and sorts three homes by location, housing type, total monthly cost, and availability.
 - `/listings/{id}` shows the matching home, costs, household details, and contact dialogs.
 - `/saved` shows session favorites. Saving and removing homes updates the shared header count.
