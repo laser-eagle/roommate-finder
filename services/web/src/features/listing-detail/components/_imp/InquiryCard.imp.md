@@ -3,13 +3,13 @@
 ## Metadata
 
 - Status: `in-progress`
-- Updated: 2026-09-27
+- Updated: 2026-10-28
 - File: `InquiryCard.tsx`
 
 ## Purpose
 
 Give the renter a clear price, availability summary, lease summary, and contact path.
-This unit includes the rent, monthly estimate, tour button, message button, and verification line.
+This unit includes the rent, monthly estimate, tour button, message button, verification line, and, for managed listings, the business link.
 
 ## Usage
 
@@ -28,6 +28,7 @@ This unit includes the rent, monthly estimate, tour button, message button, and 
 - [x] Disable both contact actions for paused listings or denied contact permission.
 - [x] Show the reason next to disabled controls.
 - [x] Replace the verification claim when authorization is expired.
+- [x] Show Managed by with a link to `/business/{id}` when the listing has a `businessId` that matches a business.
 - [ ] Derive permissions and verification freshness from production services.
 - [ ] Create real tour requests and authorized conversations.
 

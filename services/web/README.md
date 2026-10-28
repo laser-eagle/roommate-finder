@@ -26,7 +26,8 @@ Open `http://127.0.0.1:5174/listings`.
 - `/signup` shows the sign-up form with full name, email, password, and one or more roles. Create account opens `/listings` when Renter or Roommate seeker is selected (or no role), otherwise `/managers`.
 - `/login` shows the login form with email and password. Log in opens `/listings`.
 - `/listings` filters and sorts three homes by location, housing type, total monthly cost, and availability.
-- `/listings/{id}` shows the matching home, costs, household details, and contact dialogs.
+- `/listings/{id}` shows the matching home, costs, household details, and contact dialogs. Managed listings link to their business profile.
+- `/business/pine-street-homes` shows the sample business profile with contact details, properties, staff, and a verified badge. The manager workspace sidebar links to it.
 - `/saved` shows session favorites. Saving and removing homes updates the shared header count.
 - `/roommates` filters profiles, shows household preferences and references, and supports a local connection-request state and a Write a reference form.
 - `/community` filters posts and supports local publishing, comments, likes, and group membership.

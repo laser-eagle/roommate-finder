@@ -26,6 +26,7 @@ export interface Listing {
   verification: { status: 'current' | 'expired'; checkedAt: string }
   match: { reasons: string; gap: string; searchId: string; evaluationVersion: string } | null
   contactAllowed: boolean
+  businessId?: string
 }
 
 export type PreviewState = 'default' | 'missing-photo' | 'unknown-costs' | 'unavailable' | 'unconfirmed' | 'no-match' | 'save-failure' | 'contact-blocked' | 'loading' | 'not-found'

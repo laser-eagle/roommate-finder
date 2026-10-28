@@ -3,7 +3,7 @@
 ## Metadata
 
 - Status: `in-progress`
-- Updated: 2026-09-27
+- Updated: 2026-10-28
 - Routes: `/managers/listings` and manager detail paths; `/managers?view=workspace` remains an entry alias
 - Files: `ManagerWorkspace.tsx`, `ManagerWorkspace.css`, `operations.data.ts`
 
@@ -53,6 +53,7 @@ The shared wordmark and green palette remain. Operational headings use DM Sans r
 At desktop widths, property/unit, occupancy, rent, availability, status, and activity are visible in one row.
 Below 760px, table rows become labeled cards with the same information and actions.
 The sidebar becomes compact horizontal tool navigation; controls remain keyboard accessible.
+The sidebar links open Business profile (`/business/pine-street-homes`), Account settings, and the Renter site.
 Readiness marketing panels and listing photos are omitted from this layout.
 The existing listing, inquiry, and tour dialogs are reused, with sans-serif titles in this workspace.
 If a completed action removes its opener from a filtered queue, focus returns to the current tool heading.

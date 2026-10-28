@@ -10,7 +10,7 @@ export const homes: Listing[] = [sampleListing, {
   availability: { confirmed: true, localDate: '2026-11-01' }, lease: '12 months', match: null,
   roomFacts: [{ label: 'The home', value: 'Studio · unfurnished' }, { label: 'Laundry', value: 'Shared laundry' }, { label: 'Pets', value: 'Cats welcome' }],
 }, {
-  ...sampleListing, id: 'capitol-hill-sublet', type: 'Sublet',
+  ...sampleListing, id: 'capitol-hill-sublet', type: 'Sublet', businessId: 'pine-street-homes',
   title: 'A furnished room on Capitol Hill.', subtitle: 'A six-month sublet near light rail and neighborhood shops.',
   description: 'A furnished private room in a three-bedroom apartment. Share a kitchen and living room with two housemates. The light rail station is a short walk away.',
   location: { city: 'Seattle', neighborhood: 'Capitol Hill' }, photo: null,
