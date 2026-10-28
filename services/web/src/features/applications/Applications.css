@@ -1,0 +1,39 @@
+.applications-main { padding-block: 56px 120px; }
+.applications-empty { display: grid; justify-items: start; gap: 20px; }
+.application-form-panel { width: min(560px, 100%); display: grid; gap: 16px; }
+.application-context { padding-block: 16px; border-block: 1px solid var(--line); }
+.application-form { display: grid; gap: 20px; margin-top: 8px; }
+.application-form fieldset { display: grid; gap: 12px; margin: 0; padding: 20px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.application-form legend { padding: 0 6px; font-size: 14px; font-weight: 600; }
+.application-form label { display: grid; gap: 8px; font-size: 14px; font-weight: 500; }
+.application-form input:not([type='checkbox']):not([type='file']) { width: 100%; min-height: 48px; padding: 12px; border: 1px solid var(--muted); border-radius: 4px; background: var(--surface); }
+.application-form input[type='file'] { font-size: 14px; }
+.application-form .application-check { display: flex; align-items: center; gap: 12px; min-height: 44px; font-weight: 400; cursor: pointer; }
+.application-check input { width: 20px; height: 20px; margin: 0; accent-color: var(--brand); }
+.application-form .button { width: 100%; }
+.applications-panel { width: min(640px, 100%); display: grid; gap: 16px; }
+.applications-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+@media (max-width: 959px) {
+  .applications-main { padding-block: 40px 80px; }
+  .application-form input:not([type='checkbox']):not([type='file']) { font-size: 16px; }
+}
+.applications-heading { display: grid; gap: 12px; margin-bottom: 32px; }
+.applications-heading h1 { font-size: 52px; line-height: 60px; }
+.applications-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.applications-item { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: center; gap: 20px; padding: 20px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+.applications-item h2 { font-size: 24px; line-height: 30px; margin-bottom: 4px; }
+.applications-item h2 a { text-decoration: none; }
+.applications-item h2 a:hover { text-decoration: underline; }
+.application-status { padding: 4px 10px; border-radius: 20px; background: var(--brand-soft); color: var(--brand); font-size: 12px; font-weight: 600; white-space: nowrap; }
+.application-details-button { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0; border: 0; background: transparent; color: var(--brand); font-size: 13px; font-weight: 600; }
+.application-details-button:hover { text-decoration: underline; text-underline-offset: 4px; }
+.application-history, .application-messages { display: grid; gap: 12px; margin-top: 20px; }
+.application-history h3, .application-messages h3 { font: 600 14px/20px var(--sans); }
+.application-history ol, .application-messages ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.application-history li { display: flex; justify-content: space-between; gap: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); font-size: 14px; }
+.application-messages li { display: grid; gap: 2px; padding: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+@media (max-width: 599px) {
+  .applications-heading h1 { font-size: 42px; line-height: 48px; }
+  .applications-item { grid-template-columns: 1fr; gap: 12px; padding: 20px; }
+  .application-status { justify-self: start; }
+}

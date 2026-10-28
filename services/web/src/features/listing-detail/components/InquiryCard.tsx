@@ -26,6 +26,7 @@ export function InquiryCard({ listing, onContact }: { listing: Listing; onContac
           onClick={() => onContact('tour')}>Request a tour<Icon name="arrow" /></button>
         <button className="button" disabled={blocked} aria-describedby={blocked ? 'contact-reason' : undefined}
           onClick={() => onContact('message')}>Message the {recipient}</button>
+        {blocked ? <button className="button" disabled aria-describedby="contact-reason">Apply</button> : <a className="button" href={`/listings/${listing.id}/apply`}>Apply</a>}
       </div>
       <p className="verification small muted">
         {listing.verification.status === 'current' && <Icon name="check" />}

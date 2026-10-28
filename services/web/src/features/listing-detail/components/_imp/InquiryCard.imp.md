@@ -9,7 +9,7 @@
 ## Purpose
 
 Give the renter a clear price, availability summary, lease summary, and contact path.
-This unit includes the rent, monthly estimate, tour button, message button, verification line, and, for managed listings, the business link.
+This unit includes the rent, monthly estimate, tour button, message button, Apply action, verification line, and, for managed listings, the business link.
 
 ## Usage
 
@@ -26,6 +26,7 @@ This unit includes the rent, monthly estimate, tour button, message button, veri
 - [x] Format the fixture date as a local calendar date.
 - [x] Replace an unconfirmed availability date with an explicit status.
 - [x] Disable both contact actions for paused listings or denied contact permission.
+- [x] Link Apply to `/listings/{id}/apply`; disable it under the same conditions as the contact actions.
 - [x] Show the reason next to disabled controls.
 - [x] Replace the verification claim when authorization is expired.
 - [x] Show Managed by with a link to `/business/{id}` when the listing has a `businessId` that matches a business.
