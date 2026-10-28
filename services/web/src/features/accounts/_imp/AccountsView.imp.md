@@ -4,9 +4,9 @@
 
 - Status: `in-progress`
 - Milestone: interactive account mockup
-- Updated: 2026-09-27
+- Updated: 2026-10-28
 - Routes: `/account/personal`, `/account/preferences`, `/account/notifications`, `/account/security`
-- Files: `AccountsView.tsx`, `AccountsView.css`, `accounts.mock.ts`, `useAccountRoute.ts`
+- Files: `AccountsView.tsx`, `AccountsView.css`, `AccountProfileDialog.tsx`, `accounts.mock.ts`, `useAccountRoute.ts`
 
 ## Purpose and scope
 
@@ -31,6 +31,7 @@ All account details are fictional. React state and a fixture authentication adap
 - [x] Show locked personal details, an edit icon, and a verified email indicator.
 - [x] Require successful fixture verification before changing or saving personal details.
 - [x] Relock on save, discard, manual lock, section navigation, refresh, or five-minute expiry.
+- [x] Show the user's references in the profile dialog and offer Request a reference with an email field and a confirmation.
 - [ ] Connect an authenticated account and persistent settings.
 
 ## Usage
@@ -55,8 +56,9 @@ Section transitions preserve saved values and drafts while revoking personal-det
 | AccountPreferences | Housing preferences and notification forms |
 | AccountSecurity | Sign-in overview and profile visibility |
 | PasswordResetDialog | Reset-link request and email confirmation states |
+| AccountProfileDialog | Public profile preview, the user's references, and the Request a reference form and confirmation |
 | AccountControls | Shared save bar and accessible switch control |
-| accounts.mock.ts | Types, section labels, and fictional initial settings |
+| accounts.mock.ts | Types, section labels, fictional initial settings, and the user's sample reference |
 | SiteHeader / PreviewDialog | Shared navigation and dialog behavior |
 
 The page owns separate draft and saved objects. Each object groups values by section.
@@ -74,6 +76,8 @@ At intermediate widths, summaries move below the form. Narrow screens stack all 
 The layout uses shared color and typography tokens. Controls retain visible keyboard focus and touch targets.
 
 The profile dialog uses saved public fields and reflects the saved visibility setting.
+AccountProfileDialog owns its view (`profile`, `request`, `sent`). The profile view lists the user's references with the shared ReferenceList (SRS Feature 12) and offers Request a reference.
+Request a reference replaces the dialog content with an Email field, Send request, and Back to profile. The form uses `noValidate`, so empty submissions continue. Send request shows a Request sent confirmation; nothing is sent.
 PasswordResetDialog shows a reset-link request and a Check your email confirmation. It collects no credentials.
 The interface uses product language. Submission and delivery remain simulated in local state.
 Implementation limitations belong in these specifications, not in the customer interface.
@@ -93,6 +97,8 @@ The shared dialog provides focus containment, Escape dismissal, and opener focus
 - [x] Account navigation and Back/Forward retain drafts while requiring verification again.
 - [x] Cancellation restores focus to the edit icon without unlocking fields.
 - [x] New personal-details lock and authentication dialog pass 320px layout review.
+- [x] The profile dialog lists Jordan's sample reference with its author, relationship, and date.
+- [x] Request a reference shows the email form; Send request shows the confirmation; Back to profile returns to the profile.
 
 ## Limitations and open questions
 

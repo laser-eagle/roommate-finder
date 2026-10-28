@@ -91,6 +91,8 @@
 .account-public-preview { display: grid; justify-items: start; gap: 12px; padding-block: 24px; margin-block: 20px; border-block: 1px solid var(--line); }
 .account-public-preview h3 { font-size: 30px; overflow-wrap: anywhere; max-width: 100%; }
 .account-public-preview p { overflow-wrap: anywhere; max-width: 100%; white-space: pre-wrap; }
+.account-references { display: grid; gap: 12px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--line); }
+.account-references h3 { font: 500 14px/20px var(--sans); }
 .account-password-content { display: grid; gap: 24px; overflow-wrap: anywhere; }
 .account-reset-email { overflow-wrap: anywhere; }
 .account-password-actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 12px; }

@@ -27,6 +27,7 @@ Show references that former roommates and landlords wrote about a person, with w
 
 `references` is an array of `Reference` records: `id`, `author`, `relationship`, `date` (display text), and `text`.
 The parent supplies the section heading and any Write or Request action.
+RoommateProfileDialog (discovery) shows another person's references with Write a reference. AccountProfileDialog (accounts) shows the user's own references with Request a reference.
 
 ## Design
 

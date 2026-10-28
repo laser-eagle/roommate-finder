@@ -1,3 +1,5 @@
+import type { Reference } from '../../components/References/ReferenceList'
+
 export type AccountSection = 'profile' | 'housing' | 'notifications' | 'privacy'
 
 export interface AccountProfile {
@@ -51,3 +53,7 @@ export const initialAccount: AccountSettings = {
   notifications: { messages: true, tours: true, matches: false, frequency: 'Daily' },
   privacy: { profileVisible: true },
 }
+
+export const accountReferences: Reference[] = [
+  { id: 'jordan-noah', author: 'Noah Kim', relationship: 'Former roommate', date: 'July 2026', text: 'Jordan and I shared an apartment in Wallingford for two years. Jordan kept shared spaces tidy, often cooked for the household, and always paid their share on time.' },
+]
