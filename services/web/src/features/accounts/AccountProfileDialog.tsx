@@ -23,7 +23,7 @@ export function AccountProfileDialog({ account, onClose }: { account: AccountSet
       <p className="small muted">Your full name, email, and housing preferences are private.</p>
       <section className="account-references" aria-labelledby="account-references-heading">
         <h3 id="account-references-heading">References</h3>
-        <ReferenceList references={accountReferences} />
+        <ReferenceList references={accountReferences} showReport={false} />
         <button className="button" type="button" onClick={() => setView('request')}>Request a reference</button>
       </section>
     </>}

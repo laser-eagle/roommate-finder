@@ -14,7 +14,7 @@ Show references that former roommates and landlords wrote about a person, with w
 
 - [x] Show each reference's author, relationship (Former roommate or Former landlord), date, and text.
 - [x] Show `No references yet.` when the list is empty.
-- [x] Show a Report action on each reference.
+- [x] Show a Report action on each reference unless `showReport` is false.
 - [x] Use the shared tokens from `index.css`.
 - [ ] Open the reporting flow from Report (checklist item 2.23).
 - [ ] Apply the recipient's privacy settings to reference visibility.
@@ -26,8 +26,9 @@ Show references that former roommates and landlords wrote about a person, with w
 ```
 
 `references` is an array of `Reference` records: `id`, `author`, `relationship`, `date` (display text), and `text`.
+`showReport` defaults to `true`. Pass `false` to hide Report, for example on the user's own profile.
 The parent supplies the section heading and any Write or Request action.
-RoommateProfileDialog (discovery) shows another person's references with Write a reference. AccountProfileDialog (accounts) shows the user's own references with Request a reference.
+RoommateProfileDialog (discovery) shows another person's references with Write a reference. AccountProfileDialog (accounts) shows the user's own references with Request a reference and hides Report.
 
 ## Design
 

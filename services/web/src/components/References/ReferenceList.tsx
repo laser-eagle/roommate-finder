@@ -8,7 +8,7 @@ export type Reference = {
   text: string
 }
 
-export function ReferenceList({ references }: { references: Reference[] }) {
+export function ReferenceList({ references, showReport = true }: { references: Reference[]; showReport?: boolean }) {
   if (!references.length) return <p className="small muted reference-empty">No references yet.</p>
   return <ul className="reference-list">
     {references.map((reference) => <li key={reference.id} className="reference-item">
@@ -17,7 +17,7 @@ export function ReferenceList({ references }: { references: Reference[] }) {
         <p className="small muted">{reference.relationship} · {reference.date}</p>
       </div>
       <p className="small reference-text">{reference.text}</p>
-      <button type="button" className="reference-report" aria-label={`Report reference from ${reference.author}`}>Report</button>
+      {showReport && <button type="button" className="reference-report" aria-label={`Report reference from ${reference.author}`}>Report</button>}
     </li>)}
   </ul>
 }

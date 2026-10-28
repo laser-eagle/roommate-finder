@@ -76,7 +76,7 @@ At intermediate widths, summaries move below the form. Narrow screens stack all 
 The layout uses shared color and typography tokens. Controls retain visible keyboard focus and touch targets.
 
 The profile dialog uses saved public fields and reflects the saved visibility setting.
-AccountProfileDialog owns its view (`profile`, `request`, `sent`). The profile view lists the user's references with the shared ReferenceList (SRS Feature 12) and offers Request a reference.
+AccountProfileDialog owns its view (`profile`, `request`, `sent`). The profile view lists the user's references with the shared ReferenceList (SRS Feature 12), without Report actions, and offers Request a reference.
 Request a reference replaces the dialog content with an Email field, Send request, and Back to profile. The form uses `noValidate`, so empty submissions continue. Send request shows a Request sent confirmation; nothing is sent.
 PasswordResetDialog shows a reset-link request and a Check your email confirmation. It collects no credentials.
 The interface uses product language. Submission and delivery remain simulated in local state.
