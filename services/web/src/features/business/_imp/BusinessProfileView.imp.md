@@ -24,6 +24,8 @@ Show renters who manages a property: the management company, its contact details
 - [x] Link to the profile from the manager workspace sidebar (Business profile).
 - [x] Use the shared tokens and button classes from `index.css`.
 - [ ] Load business profiles, portfolios, staff, and verification status from backend services.
+- [ ] Future change: reach the profile from the manager workspace on narrow screens (see ManagerWorkspace.imp.md).
+- [ ] Future change: review the message button wording on managed sublets (see InquiryCard.imp.md).
 
 ## Usage
 

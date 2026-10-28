@@ -23,7 +23,8 @@ The workspace uses representative records and local interactions without custome
 - [x] Separate listing publishing status from unit occupancy.
 - [x] Support local listing creation/editing, bulk pause/resume, replies, and tour confirmation.
 - [x] Show pending work and the next three tours beneath inventory.
-- [x] Provide working links to the account and renter interfaces.
+- [x] Provide working links to the business profile, account, and renter interfaces.
+- [ ] Future change: show the sidebar's Business profile, Account settings, and Renter site links below 960px. They are currently hidden on narrow screens.
 - [x] Keep the original overview available for comparison.
 - [ ] Load authorized property, unit, occupancy, inquiry, and tour data from services.
 

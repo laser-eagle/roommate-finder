@@ -29,6 +29,7 @@ This unit includes the rent, monthly estimate, tour button, message button, veri
 - [x] Show the reason next to disabled controls.
 - [x] Replace the verification claim when authorization is expired.
 - [x] Show Managed by with a link to `/business/{id}` when the listing has a `businessId` that matches a business.
+- [ ] Future change: decide whether a managed sublet's message button says Message the property manager instead of Message the household. The Capitol Hill sublet currently says household.
 - [ ] Derive permissions and verification freshness from production services.
 - [ ] Create real tour requests and authorized conversations.
 
