@@ -1,0 +1,6 @@
+.reference-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.reference-item { display: grid; gap: 8px; padding: 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+.reference-author { font-size: 14px; line-height: 20px; font-weight: 600; }
+.reference-text { color: var(--ink); }
+.reference-report { justify-self: start; min-height: 32px; padding: 0; border: 0; background: transparent; color: var(--muted); font-size: 12px; text-decoration: underline; text-underline-offset: 4px; }
+.reference-report:hover { color: var(--brand); }

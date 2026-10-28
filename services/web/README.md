@@ -28,7 +28,7 @@ Open `http://127.0.0.1:5174/listings`.
 - `/listings` filters and sorts three homes by location, housing type, total monthly cost, and availability.
 - `/listings/{id}` shows the matching home, costs, household details, and contact dialogs.
 - `/saved` shows session favorites. Saving and removing homes updates the shared header count.
-- `/roommates` filters profiles, shows household preferences, and supports a local connection-request state.
+- `/roommates` filters profiles, shows household preferences and references, and supports a local connection-request state and a Write a reference form.
 - `/community` filters posts and supports local publishing, comments, likes, and group membership.
 - `/managers` provides listing filters, draft creation, editing, status changes, inquiries, and tours.
 - `/managers?view=workspace` provides the second manager layout: a compact inventory table, vacancy filters, bulk pause/resume, and dedicated inquiry and tour queues. Workspace / Overview links switch layouts.
