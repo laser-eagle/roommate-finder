@@ -7,6 +7,8 @@ import { ManagerUnitReport } from './ManagerUnitReport'
 import { ManagerApplications } from './ManagerApplications'
 import { ManagerMaintenance } from './ManagerMaintenance'
 import type { ManagerRequest } from './maintenance.mock'
+import { ManagerTeam } from './ManagerTeam'
+import type { TeamMember } from './team.mock'
 import { openStatuses } from './applications.mock'
 import type { ManagerApplication } from './applications.mock'
 import type { ApplicationStatus } from '../applications/applications.data'
@@ -15,10 +17,11 @@ import { unitDetails, unitLabel } from './operations.data'
 import type { Inquiry, ListingStatus, ManagedListing, Tour } from './managers.mock'
 import './ManagerWorkspace.css'
 
-const labels = { listings: 'Listings', inquiries: 'Inquiries', tours: 'Tours', applications: 'Applications', maintenance: 'Maintenance', vacant: 'Vacant units', notices: 'Notice given', 'pending-inquiries': 'Inquiries to reply', 'pending-tours': 'Tours to confirm', 'not-found': 'Manager page not found' }
+const labels = { listings: 'Listings', inquiries: 'Inquiries', tours: 'Tours', applications: 'Applications', maintenance: 'Maintenance', team: 'Team', vacant: 'Vacant units', notices: 'Notice given', 'pending-inquiries': 'Inquiries to reply', 'pending-tours': 'Tours to confirm', 'not-found': 'Manager page not found' }
 
-export function ManagerWorkspace({ listings, inquiries, tours, applications, requests, notice, onDismiss, onCreate, onEdit, onInquiry, onTour, onBulkStatus, onApplicationStatus, onApplicationNote, onRequestUpdate }: {
-  listings: ManagedListing[]; inquiries: Inquiry[]; tours: Tour[]; applications: ManagerApplication[]; requests: ManagerRequest[]; notice: string
+export function ManagerWorkspace({ listings, inquiries, tours, applications, requests, team, notice, onDismiss, onCreate, onEdit, onInquiry, onTour, onBulkStatus, onApplicationStatus, onApplicationNote, onRequestUpdate, onTeamAdd, onTeamRemove }: {
+  listings: ManagedListing[]; inquiries: Inquiry[]; tours: Tour[]; applications: ManagerApplication[]; requests: ManagerRequest[]; team: TeamMember[]; notice: string
+  onTeamAdd: (member: TeamMember) => void; onTeamRemove: (id: string) => void
   onRequestUpdate: (id: string, change: Partial<ManagerRequest>, update: string) => void
   onApplicationStatus: (id: string, status: ApplicationStatus) => void; onApplicationNote: (id: string, text: string) => void
   onDismiss: () => void; onCreate: () => void; onEdit: (listing: ManagedListing) => void
@@ -34,14 +37,14 @@ export function ManagerWorkspace({ listings, inquiries, tours, applications, req
   const totalTasks = pendingInquiries.length + pendingTours.length + drafts.length
 
   function openActivity(next: 'inquiries' | 'tours', id: string) { goTo(next === 'inquiries' ? 'pending-inquiries' : 'tours', id) }
-  const descriptions = { vacant: 'Vacancy dates, unit preparation, and leasing activity.', notices: 'Move-out dates, turnover plans, and upcoming availability.', 'pending-inquiries': 'Renter inquiries awaiting a response.', 'pending-tours': 'Tour requests awaiting confirmation.', applications: 'Rental applications for your listings.', maintenance: 'Repair requests from residents and building announcements.' }
-  const section = page.includes('inquiries') ? 'inquiries' : page.includes('tours') ? 'tours' : page === 'applications' ? 'applications' : page === 'maintenance' ? 'maintenance' : 'listings'
+  const descriptions = { vacant: 'Vacancy dates, unit preparation, and leasing activity.', notices: 'Move-out dates, turnover plans, and upcoming availability.', 'pending-inquiries': 'Renter inquiries awaiting a response.', 'pending-tours': 'Tour requests awaiting confirmation.', applications: 'Rental applications for your listings.', maintenance: 'Repair requests from residents and building announcements.', team: 'Staff roles, permissions, and property access.' }
+  const section = page.includes('inquiries') ? 'inquiries' : page.includes('tours') ? 'tours' : page === 'applications' ? 'applications' : page === 'maintenance' ? 'maintenance' : page === 'team' ? 'team' : 'listings'
   const pendingOnly = page.startsWith('pending-')
   useEffect(() => { document.title = `${labels[page]} | Property management` }, [page])
 
   return <main id="main-content" tabIndex={-1} className="ops-main">
     <aside className="ops-sidebar" aria-label="Manager workspace navigation"><div className="ops-organization"><span className="ops-organization-icon"><Icon name="home" /></span><div><strong>Property management</strong><span>Seattle portfolio</span></div></div>
-      <nav aria-label="Manager tools">{(['listings', 'inquiries', 'tours', 'applications', 'maintenance'] as const).map((item) => <a key={item} href={managerPaths[item]} aria-current={section === item && page !== 'not-found' ? 'page' : undefined} onClick={(event) => followLink(event, item)}><Icon name={item === 'listings' ? 'list' : item === 'inquiries' ? 'inbox' : item === 'tours' ? 'calendar' : item === 'applications' ? 'edit' : 'home'} /><span>{labels[item]}</span><b>{item === 'listings' ? listings.length : item === 'inquiries' ? pendingInquiries.length : item === 'tours' ? pendingTours.length : item === 'applications' ? applications.filter((application) => openStatuses.includes(application.status)).length : requests.filter((request) => request.status === 'Open' || request.status === 'In Progress').length}</b></a>)}</nav>
+      <nav aria-label="Manager tools">{(['listings', 'inquiries', 'tours', 'applications', 'maintenance', 'team'] as const).map((item) => <a key={item} href={managerPaths[item]} aria-current={section === item && page !== 'not-found' ? 'page' : undefined} onClick={(event) => followLink(event, item)}><Icon name={item === 'listings' ? 'list' : item === 'inquiries' ? 'inbox' : item === 'tours' ? 'calendar' : item === 'applications' ? 'edit' : item === 'maintenance' ? 'home' : 'lock'} /><span>{labels[item]}</span><b>{item === 'listings' ? listings.length : item === 'inquiries' ? pendingInquiries.length : item === 'tours' ? pendingTours.length : item === 'applications' ? applications.filter((application) => openStatuses.includes(application.status)).length : item === 'team' ? team.length : requests.filter((request) => request.status === 'Open' || request.status === 'In Progress').length}</b></a>)}</nav>
       <div className="ops-sidebar-links"><a href="/business/pine-street-homes">Business profile<Icon name="arrow" /></a><a href="/account/personal">Account settings<Icon name="arrow" /></a><a href="/listings">Renter site<Icon name="arrow" /></a></div>
     </aside>
     <div id="ops-content" className="ops-content"><header className="ops-heading"><div><span className="ops-breadcrumb">Management / {labels[page]}</span><h1 tabIndex={-1}>{labels[page]}</h1>{page in descriptions && <p className="ops-page-description">{descriptions[page as keyof typeof descriptions]}</p>}</div><div className="ops-heading-actions">{page !== 'listings' ? <a href={managerPaths.listings} className="button ops-back-link" onClick={(event) => followLink(event, 'listings')}>Back to listings</a> : <nav className="manager-view-switch" aria-label="Manager layout"><a href={managerPaths.listings} aria-current="page" onClick={(event) => followLink(event, 'listings')}>Workspace</a><a href="/managers">Overview</a></nav>}<button className="button button-primary" onClick={() => { setFilters(structuredClone(initialInventoryFilters)); goTo('listings'); onCreate() }}><span aria-hidden="true">＋</span>Add listing</button></div></header>
@@ -61,6 +64,7 @@ export function ManagerWorkspace({ listings, inquiries, tours, applications, req
         <section className="ops-panel ops-schedule-panel" aria-labelledby="ops-schedule-title"><div className="ops-panel-title"><h2 id="ops-schedule-title">Upcoming tours</h2><button onClick={() => goTo('tours')}>View all<Icon name="arrow" /></button></div><ul>{tours.slice(0, 3).map((tour) => { const listing = listings.find((item) => item.id === tour.listingId); return <li key={tour.id}><span className="ops-date"><strong>{tour.day}</strong>{tour.month}</span><div><strong>{tour.name}</strong><span>{listing ? unitLabel(listing) : 'Listing unavailable'}</span><small>{tour.time}</small></div><button className={`ops-tag ${tour.confirmed ? '' : 'needs-action'}`} onClick={() => onTour(tour)} aria-label={`Review tour with ${tour.name}`}>{tour.confirmed ? 'Confirmed' : 'Confirm'}</button></li> })}</ul></section>
         </div>
       </> : page === 'vacant' || page === 'notices' ? <ManagerUnitReport key={page} kind={page} listings={listings} inquiries={inquiries} tours={tours} onEdit={onEdit} onActivity={openActivity} />
+        : page === 'team' ? <ManagerTeam team={team} onAdd={onTeamAdd} onRemove={onTeamRemove} />
         : page === 'maintenance' ? <ManagerMaintenance requests={requests} onUpdate={onRequestUpdate} />
         : page === 'applications' ? <ManagerApplications applications={applications} listings={listings} onStatus={onApplicationStatus} onNote={onApplicationNote} />
         : section === 'inquiries' || section === 'tours' ? <ManagerWorkQueues key={page} section={section} listings={listings} inquiries={inquiries} tours={tours} listingId={listingId} onListing={(id) => goTo(page as 'inquiries' | 'tours' | 'pending-inquiries' | 'pending-tours', id)} pendingOnly={pendingOnly} onPending={(pending) => goTo(pending ? (section === 'inquiries' ? 'pending-inquiries' : 'pending-tours') : section, listingId)} onClear={() => goTo(section)} onInquiry={onInquiry} onTour={onTour} />

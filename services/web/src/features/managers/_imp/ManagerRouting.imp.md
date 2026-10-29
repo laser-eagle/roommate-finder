@@ -21,6 +21,7 @@
 | `/managers/tours/pending` | Tours requiring confirmation |
 | `/managers/applications` | Rental applications for review |
 | `/managers/maintenance` | Maintenance requests and building announcements |
+| `/managers/team` | Team members, roles, and permissions |
 
 The query `listing={id}` scopes activity to a listing and survives refresh.
 The earlier `/managers?view=workspace` URL remains a workspace entry alias.

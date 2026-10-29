@@ -58,6 +58,7 @@ State starts as independent copies of the fixture arrays.
 Updates replace records by stable ID. Summaries derive from the same records.
 In the workspace, ManagersView also owns the rental application records from `applications.mock.ts` and passes status and note handlers to ManagerWorkspace.
 It also owns the maintenance request records from `maintenance.mock.ts` and passes an update handler that appends a Pine Street Homes update and shows it as the notice.
+It also owns the team records from `team.mock.ts` and passes add and remove handlers that show a notice.
 New listings receive a unique ID and always start as Draft.
 Workspace bulk pause/resume handlers exclude drafts and only change the selected IDs supplied by inventory.
 Draft creation and editing clear filters so the saved record stays visible.

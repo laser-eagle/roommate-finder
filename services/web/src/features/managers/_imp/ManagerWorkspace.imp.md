@@ -24,6 +24,7 @@ The workspace uses representative records and local interactions without custome
 - [x] Support local listing creation/editing, bulk pause/resume, replies, and tour confirmation.
 - [x] Include Applications in the tool navigation with the count of open applications (see ManagerApplications.imp.md).
 - [x] Include Maintenance in the tool navigation with the count of Open and In Progress requests (see ManagerMaintenance.imp.md).
+- [x] Include Team in the tool navigation with the number of team members (see ManagerTeam.imp.md).
 - [x] Show pending work and the next three tours beneath inventory.
 - [x] Provide working links to the business profile, account, and renter interfaces.
 - [ ] Future change: show the sidebar's Business profile, Account settings, and Renter site links below 960px. They are currently hidden on narrow screens.
@@ -55,7 +56,7 @@ Workspace fixtures and all changes are local. Switching to the original overview
 The shared wordmark and green palette remain. Operational headings use DM Sans rather than display typography.
 At desktop widths, property/unit, occupancy, rent, availability, status, and activity are visible in one row.
 Below 760px, table rows become labeled cards with the same information and actions.
-The sidebar becomes compact horizontal tool navigation; controls remain keyboard accessible. From 760px to 959px the five tools wrap onto more than one line when needed. Below 760px they form a two-column grid.
+The sidebar becomes compact horizontal tool navigation; controls remain keyboard accessible. From 760px to 959px the six tools wrap onto more than one line when needed. Below 760px they form a two-column grid.
 The sidebar links open Business profile (`/business/pine-street-homes`), Account settings, and the Renter site.
 Readiness marketing panels and listing photos are omitted from this layout.
 The existing listing, inquiry, and tour dialogs are reused, with sans-serif titles in this workspace.

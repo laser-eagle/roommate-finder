@@ -43,6 +43,7 @@ Open `http://127.0.0.1:5174/listings`.
 - `/managers/inquiries/pending` and `/managers/tours/pending` show work requiring a reply or confirmation; parent paths show all activity.
 - `/managers/applications` lists rental applications. Review opens details, documents, and team feedback, with Add note, Request info, Decline, and Approve.
 - `/managers/maintenance` lists maintenance requests and building announcements. Review opens request details and updates, with Assign staff, Schedule repair, Post update, and Mark resolved.
+- `/managers/team` lists team members with roles, permissions, and property access. Add member sends an invitation with a role or custom permissions; Remove asks for confirmation.
 - Manager summary links open these pages. Internal Back/Forward and Back to listings preserve inventory filters and local record updates.
 - `/account/personal` shows locked personal details and an email verification indicator. The edit icon opens an authentication check. The profile card's View profile dialog lists the user's references and a Request a reference form.
 - `/account/preferences`, `/account/notifications`, and `/account/security` open their corresponding settings sections.

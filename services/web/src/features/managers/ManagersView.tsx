@@ -10,6 +10,7 @@ import { operationsInquiries, operationsListings, operationsTours } from './oper
 import { initialInquiries, initialListings, initialTours } from './managers.mock'
 import { initialApplications } from './applications.mock'
 import { initialManagerRequests } from './maintenance.mock'
+import { initialTeam } from './team.mock'
 import type { ManagedListing, ManagerDialog as DialogState } from './managers.mock'
 import { useSavedHomes } from '../discovery/useSavedHomes'
 import './ManagersView.css'
@@ -21,6 +22,7 @@ export function ManagersView() {
   const [tours, setTours] = useState(() => structuredClone(workspace ? operationsTours : initialTours))
   const [applications, setApplications] = useState(() => structuredClone(initialApplications))
   const [requests, setRequests] = useState(() => structuredClone(initialManagerRequests))
+  const [team, setTeam] = useState(() => structuredClone(initialTeam))
   const [filter, setFilter] = useState<ListingFilter>('All')
   const [query, setQuery] = useState('')
   const [dialog, setDialog] = useState<DialogState | null>(null)
@@ -66,7 +68,9 @@ export function ManagersView() {
 
   return <>
     <SiteHeader savedCount={savedIds.length} />
-    {workspace ? <ManagerWorkspace listings={listings} inquiries={inquiries} tours={tours} applications={applications} requests={requests} notice={notice}
+    {workspace ? <ManagerWorkspace listings={listings} inquiries={inquiries} tours={tours} applications={applications} requests={requests} team={team} notice={notice}
+      onTeamAdd={(member) => { setTeam((current) => [...current, member]); setNotice(`Invitation sent to ${member.email}.`) }}
+      onTeamRemove={(id) => { const member = team.find((item) => item.id === id); setTeam((current) => current.filter((item) => item.id !== id)); if (member) setNotice(`${member.name} was removed from the team.`) }}
       onRequestUpdate={(id, change, update) => { setRequests((current) => current.map((request) => request.id === id ? { ...request, ...change, updates: [...request.updates, { id: `mu-${Date.now()}`, date: new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date()), author: 'Pine Street Homes', text: update }] } : request)); setNotice(update) }}
       onApplicationStatus={(id, status) => { setApplications((current) => current.map((application) => application.id === id ? { ...application, status } : application)); if (status !== 'Under Review') setNotice(status === 'Info Requested' ? 'Information requested from the applicant.' : `Decision sent: ${status}.`) }}
       onApplicationNote={(id, text) => { if (!text.trim()) return; setApplications((current) => current.map((application) => application.id === id ? { ...application, feedback: [...application.feedback, { id: `note-${Date.now()}`, author: 'You', text: text.trim() }] } : application)); setNotice('Note added.') }} onDismiss={() => setNotice('')}
