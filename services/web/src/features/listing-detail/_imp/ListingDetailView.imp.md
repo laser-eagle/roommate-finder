@@ -4,7 +4,7 @@
 
 - Status: `in-progress`
 - Milestone: interactive mockup
-- Updated: 2026-09-27
+- Updated: 2026-10-29
 - Source: [Listing detail specification](../../../../docs/web.ui.md)
 - Location: `src/features/listing-detail`
 
@@ -20,6 +20,7 @@ The current implementation uses fictional data. Production services remain pendi
 - [x] Include all household facts on mobile.
 - [x] Keep the deposit outside the monthly total.
 - [x] Provide local save, tour, and message previews.
+- [x] Open ReportDialog from Report listing and remember the report number until refresh (see ReportDialog.imp.md).
 - [x] Expose loading, missing-listing, uncertainty, and permission scenarios.
 - [ ] Load published inventory and viewer projections from services.
 - [ ] Apply current authorization, blocking, and household consent rules.
@@ -27,7 +28,7 @@ The current implementation uses fictional data. Production services remain pendi
 
 ## Design
 
-`ListingDetailView` owns the preview scenario, favorite state, pending save, and active contact dialog.
+`ListingDetailView` owns the preview scenario, favorite state, pending save, active contact dialog, report dialog, and report number.
 `listing.mock.ts` provides independent fixture copies. `listing.types.ts` defines the current presentation model.
 The shared cost rule provides the monthly total for both panels.
 
@@ -68,7 +69,7 @@ Unrecognized paths show the missing-listing state.
 The shared useSavedHomes hook stores multiple home IDs in session storage and supports the previous Ballard favorite key.
 The header count reflects the full collection. If storage is unavailable, the current page retains its in-memory state.
 A simulated save delay exposes pending state. Failure preserves the previous favorite value.
-Changing the scenario cancels any pending save and closes the contact preview.
+Changing the scenario cancels any pending save and closes the contact preview and report dialog.
 No inventory, authentication, favorites, or contact API is connected.
 The UI uses intended product wording without mockup banners. Sent states remain simulated.
 Scenario controls are available only when the URL includes `?review=1`.

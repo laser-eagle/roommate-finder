@@ -28,6 +28,9 @@
 .verification { display: flex; align-items: center; gap: 6px; margin-top: 16px; font-size: 12px; line-height: 18px; }
 .managed-by { margin-top: 8px; }
 .managed-by a { color: var(--brand); font-weight: 600; }
+.report-listing { min-height: 32px; margin-top: 8px; padding: 0; border: 0; background: transparent; color: var(--muted); font-size: 12px; text-decoration: underline; text-underline-offset: 4px; }
+.report-listing:hover:not([aria-disabled='true']) { color: var(--brand); }
+.report-listing[aria-disabled='true'] { text-decoration: none; cursor: default; }
 .contact-reason { margin-bottom: 16px; }
 .about-home { grid-column: 1; grid-row: 2; padding-top: 4px; }
 .about-home > p { max-width: 740px; margin: 20px 0 16px; }

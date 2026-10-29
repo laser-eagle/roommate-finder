@@ -3,21 +3,22 @@
 ## Metadata
 
 - Status: `in-progress`
-- Updated: 2026-10-28
+- Updated: 2026-10-29
 - File: `InquiryCard.tsx`
 
 ## Purpose
 
 Give the renter a clear price, availability summary, lease summary, and contact path.
-This unit includes the rent, monthly estimate, tour button, message button, Apply action, verification line, and, for managed listings, the business link.
+This unit includes the rent, monthly estimate, tour button, message button, Apply action, verification line, and, for managed listings, the business link, plus a Report listing button.
 
 ## Usage
 
 ```tsx
-<InquiryCard listing={listing} onContact={setContact} />
+<InquiryCard listing={listing} onContact={setContact} reported={reported} onReport={openReport} />
 ```
 
 `onContact` receives `tour` or `message`. The parent owns the contact dialog.
+`onReport` opens the parent's report dialog. `reported` is the report number, or an empty string before a report is sent.
 
 ## Requirements and behavior
 
@@ -30,6 +31,7 @@ This unit includes the rent, monthly estimate, tour button, message button, Appl
 - [x] Show the reason next to disabled controls.
 - [x] Replace the verification claim when authorization is expired.
 - [x] Show Managed by with a link to `/business/{id}` when the listing has a `businessId` that matches a business.
+- [x] Show Report listing at the bottom of the card. After a report, show `Reported · {number}` and ignore further clicks until refresh (SRS Feature 33, UC-3.5; prototype checklist item 2.23).
 - [ ] Future change: decide whether a managed sublet's message button says Message the property manager instead of Message the household. The Capitol Hill sublet currently says household.
 - [ ] Derive permissions and verification freshness from production services.
 - [ ] Create real tour requests and authorized conversations.
@@ -40,6 +42,7 @@ The panel aligns with the photo on desktop and follows it on mobile.
 The tour button uses the primary color. The message button uses an outline.
 The component emits actions only. It does not submit forms or infer permissions.
 The fixture marks its authorization record as current or expired.
+Report listing is a small underlined text button. After a report it uses `aria-disabled` instead of `disabled`, so focus can return to it when the dialog closes.
 
 ## Testing and acceptance
 
@@ -48,6 +51,7 @@ The fixture marks its authorization record as current or expired.
 - [x] Unconfirmed availability displays no old date as current.
 - [x] Expired authorization displays no verified claim.
 - [x] Both enabled actions open their corresponding local preview.
+- [x] Report listing opens the report dialog; after submitting it reads Reported · RPT-2041 and does not reopen the dialog.
 
 ## Limitations and open questions
 

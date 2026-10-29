@@ -11,6 +11,7 @@ import { AboutHomeSection } from './components/AboutHomeSection'
 import { MatchExplanationPanel } from './components/MatchExplanationPanel'
 import { CostBreakdownPanel } from './components/CostBreakdownPanel'
 import { ContactPreview } from './components/ContactPreview'
+import { ReportDialog } from '../../components/ReportDialog/ReportDialog'
 import { MockupControls } from './components/MockupControls'
 import { ListingLoading, ListingNotFound } from './components/ListingStates'
 import './ListingDetailView.css'
@@ -21,6 +22,8 @@ export function ListingDetailView() {
   const [pending, setPending] = useState(false)
   const [notice, setNotice] = useState('')
   const [contact, setContact] = useState<ContactAction | null>(null)
+  const [reporting, setReporting] = useState(false)
+  const [reported, setReported] = useState('')
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const path = window.location.pathname.replace(/\/+$/, '') || '/'
   const source = homes.find((home) => path === `/listings/${home.id}`)
@@ -57,6 +60,7 @@ export function ListingDetailView() {
     setPending(false)
     setNotice('')
     setContact(null)
+    setReporting(false)
     setPreview(next)
   }
 
@@ -70,7 +74,7 @@ export function ListingDetailView() {
             {listing.status !== 'active' && <p className="unavailable-banner" role="status">This home is currently paused.</p>}
             <div className="listing-layout">
               <ListingPhotoGallery photo={listing.photo} caption={`${listing.location.neighborhood}, ${listing.location.city} · ${listing.type}`} />
-              <InquiryCard listing={listing} onContact={setContact} />
+              <InquiryCard listing={listing} onContact={setContact} reported={reported} onReport={() => setReporting(true)} />
               <AboutHomeSection listing={listing} />
               <MatchExplanationPanel match={listing.match} />
               <CostBreakdownPanel costs={listing.costs} />
@@ -79,6 +83,7 @@ export function ListingDetailView() {
         )}
       </main>
       {isDetail && showReviewControls && <MockupControls state={preview} onChange={changePreview} />}
+      {reporting && <ReportDialog title="Report listing" subject={listing.title} number="RPT-2041" onSubmit={(report) => setReported(report.number)} onClose={() => setReporting(false)} />}
       {contact && <ContactPreview action={contact} listing={listing} onClose={() => setContact(null)} />}
     </>
   )

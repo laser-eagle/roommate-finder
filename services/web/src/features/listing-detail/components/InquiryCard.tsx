@@ -3,7 +3,9 @@ import { estimatedMonthlyTotal, formatLocalDate, formatMoney } from '../costs'
 import type { ContactAction, Listing } from '../listing.types'
 import { findBusiness } from '../../business/business.data'
 
-export function InquiryCard({ listing, onContact }: { listing: Listing; onContact: (action: ContactAction) => void }) {
+export function InquiryCard({ listing, onContact, reported, onReport }: {
+  listing: Listing; onContact: (action: ContactAction) => void; reported: string; onReport: () => void
+}) {
   const total = estimatedMonthlyTotal(listing.costs)
   const business = findBusiness(listing.businessId)
   const blocked = listing.status !== 'active' || !listing.contactAllowed
@@ -33,6 +35,7 @@ export function InquiryCard({ listing, onContact }: { listing: Listing; onContac
         {listing.verification.status === 'current' ? 'Verified listing · Authorization checked' : 'Listing authorization not current'}
       </p>
       {business && <p className="managed-by small muted">Managed by <a href={`/business/${business.id}`}>{business.name}</a></p>}
+      <button type="button" className="report-listing" aria-disabled={Boolean(reported)} onClick={() => { if (!reported) onReport() }}>{reported ? `Reported · ${reported}` : 'Report listing'}</button>
     </section>
   )
 }
