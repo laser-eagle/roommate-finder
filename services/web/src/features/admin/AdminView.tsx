@@ -5,16 +5,18 @@ import { Icon } from '../../components/Icon'
 import { useSavedHomes } from '../discovery/useSavedHomes'
 import { AdminReports } from './AdminReports'
 import { AdminAppeals } from './AdminAppeals'
+import { AdminAnalytics } from './AdminAnalytics'
+import { analyticsRange } from './analytics.data'
 import { initialAppeals, initialReports, openReport } from './moderation.data'
 import type { AppealStatus } from './moderation.data'
 import '../managers/ManagerWorkspace.css'
 import '../managers/ManagersView.css'
 import './AdminView.css'
 
-const adminPaths = { reports: '/admin/reports', appeals: '/admin/appeals' } as const
+const adminPaths = { reports: '/admin/reports', appeals: '/admin/appeals', analytics: '/admin/analytics' } as const
 type AdminPage = keyof typeof adminPaths
-const labels = { reports: 'Reports', appeals: 'Appeals', 'not-found': 'Admin page not found' }
-const descriptions = { reports: 'Reported content waiting for review.', appeals: 'Requests to review a moderation decision again.' }
+const labels = { reports: 'Reports', appeals: 'Appeals', analytics: 'Analytics', 'not-found': 'Admin page not found' }
+const descriptions = { reports: 'Reported content waiting for review.', appeals: 'Requests to review a moderation decision again.', analytics: analyticsRange }
 
 function readPage(): AdminPage | 'not-found' {
   const path = window.location.pathname.replace(/\/+$/, '')
@@ -60,18 +62,19 @@ export function AdminView() {
     setNotice(status === 'Decision reversed' ? `Appeal for ${appeal?.reportNumber} accepted. The content was restored.` : `Appeal for ${appeal?.reportNumber} declined. The decision stands.`)
   }
 
-  const counts = { reports: reports.filter(openReport).length, appeals: appeals.filter((appeal) => appeal.status === 'Under review').length }
+  const counts: Partial<Record<AdminPage, number>> = { reports: reports.filter(openReport).length, appeals: appeals.filter((appeal) => appeal.status === 'Under review').length }
 
   return <><SiteHeader savedCount={savedIds.length} /><main id="main-content" tabIndex={-1} className="ops-main">
     <aside className="ops-sidebar" aria-label="Admin navigation"><div className="ops-organization"><span className="ops-organization-icon"><Icon name="lock" /></span><div><strong>Admin tools</strong><span>Trust and safety</span></div></div>
       <nav aria-label="Admin tools">{(Object.keys(adminPaths) as AdminPage[]).map((item) => <a key={item} href={adminPaths[item]} aria-current={page === item ? 'page' : undefined} onClick={(event) => followLink(event, item)}>
-        <Icon name={item === 'reports' ? 'inbox' : 'edit'} /><span>{labels[item]}</span><b>{counts[item]}</b></a>)}</nav>
+        <Icon name={item === 'reports' ? 'inbox' : item === 'appeals' ? 'edit' : 'list'} /><span>{labels[item]}</span>{counts[item] !== undefined && <b>{counts[item]}</b>}</a>)}</nav>
       <div className="ops-sidebar-links"><a href="/account/personal">Account settings<Icon name="arrow" /></a><a href="/listings">Renter site<Icon name="arrow" /></a></div>
     </aside>
     <div id="ops-content" className="ops-content">
       <header className="ops-heading"><div><span className="ops-breadcrumb">Admin / {labels[page]}</span><h1 tabIndex={-1}>{labels[page]}</h1>{page !== 'not-found' && <p className="ops-page-description">{descriptions[page]}</p>}</div></header>
       {page === 'reports' ? <AdminReports reports={reports} onDismiss={dismiss} />
         : page === 'appeals' ? <AdminAppeals appeals={appeals} onDecide={decide} />
+        : page === 'analytics' ? <AdminAnalytics />
           : <section className="ops-panel ops-empty"><h2>Page not found</h2><p>Use the admin navigation or return to reports.</p><a className="button" href={adminPaths.reports} onClick={(event) => followLink(event, 'reports')}>Go to reports</a></section>}
       <div className={`manager-notice ${notice ? 'has-notice' : ''}`} role="status">{notice}{notice && <button aria-label="Dismiss notification" onClick={() => setNotice('')}><Icon name="close" /></button>}</div>
     </div>

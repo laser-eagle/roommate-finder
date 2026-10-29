@@ -1,1 +1,24 @@
 .admin-review-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); }
+.admin-metrics { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin-bottom: 20px; border: 1px solid var(--line); border-radius: 5px; background: var(--surface); }
+.admin-metrics div { display: grid; gap: 4px; min-width: 0; padding: 16px 18px; border-right: 1px solid var(--line); }
+.admin-metrics div:last-child { border-right: 0; }
+.admin-metrics span { font-size: 12px; }
+.admin-metrics strong { font-size: 26px; line-height: 32px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.admin-metrics small { font-size: 11px; color: var(--muted); }
+.admin-analytics-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
+.admin-analytics-grid .ops-panel { min-width: 0; margin: 0; }
+.admin-analytics-wide { grid-column: 1 / -1; }
+.admin-analytics-table td { font-variant-numeric: tabular-nums; }
+@media (max-width: 1199px) {
+  .admin-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .admin-metrics div { border-bottom: 1px solid var(--line); }
+  .admin-analytics-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 759px) {
+  .admin-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .admin-metrics div:nth-child(2n) { border-right: 0; }
+}
+@media (max-width: 400px) {
+  .admin-metrics { grid-template-columns: 1fr; }
+  .admin-metrics div { border-right: 0; }
+}

@@ -48,7 +48,7 @@ Open `http://127.0.0.1:5174/listings`.
 - Manager summary links open these pages. Internal Back/Forward and Back to listings preserve inventory filters and local record updates.
 - `/account/personal` shows locked personal details and an email verification indicator. The edit icon opens an authentication check. The profile card's View profile dialog lists the user's references and a Request a reference form.
 - `/account/preferences`, `/account/notifications`, and `/account/security` open their corresponding settings sections. `/account/moderation` shows a moderation decision on the user's post with an appeal form.
-- `/admin/reports` is the admin review queue for reported content, with Dismiss report. `/admin/appeals` lists appeals of moderation decisions, with Uphold decision and Reverse decision. The Account sidebar links to the admin tools.
+- `/admin/reports` is the admin review queue for reported content, with Dismiss report. `/admin/appeals` lists appeals of moderation decisions, with Uphold decision and Reverse decision. `/admin/analytics` shows sample platform analytics for the last 30 days: listing performance, response times, successful matches, automated-search failures, and notification delivery. The Account sidebar links to the admin tools.
 - `/account`, `/accounts`, and plural section aliases resolve to canonical account paths.
 - `/listings/ballard-room` opens the original Ballard detail. Unknown listing paths show the unavailable-listing state.
 
