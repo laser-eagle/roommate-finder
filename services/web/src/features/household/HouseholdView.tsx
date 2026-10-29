@@ -6,12 +6,13 @@ import { MoveChecklists } from './MoveChecklists'
 import { SharedExpenses } from './SharedExpenses'
 import { RentPayments } from './RentPayments'
 import { Maintenance } from './Maintenance'
+import { Lease } from './Lease'
 import { householdHome, householdMembers, initialAgreement, initialChecklists } from './household.data'
 import './Household.css'
 
 export function HouseholdView() {
   const { savedIds } = useSavedHomes()
-  const [tab, setTab] = useState<'agreement' | 'checklists' | 'expenses' | 'rent' | 'maintenance'>('agreement')
+  const [tab, setTab] = useState<'agreement' | 'checklists' | 'expenses' | 'rent' | 'lease' | 'maintenance'>('agreement')
   const [agreement, setAgreement] = useState(() => structuredClone(initialAgreement))
   const [checklists, setChecklists] = useState(() => structuredClone(initialChecklists))
   const [sharedAt, setSharedAt] = useState('')
@@ -32,12 +33,14 @@ export function HouseholdView() {
       <button type="button" aria-pressed={tab === 'checklists'} onClick={() => setTab('checklists')}>Move checklists</button>
       <button type="button" aria-pressed={tab === 'expenses'} onClick={() => setTab('expenses')}>Shared expenses</button>
       <button type="button" aria-pressed={tab === 'rent'} onClick={() => setTab('rent')}>Rent payments</button>
+      <button type="button" aria-pressed={tab === 'lease'} onClick={() => setTab('lease')}>Lease</button>
       <button type="button" aria-pressed={tab === 'maintenance'} onClick={() => setTab('maintenance')}>Maintenance</button>
     </div>
     <div hidden={tab !== 'agreement'}><HouseholdAgreement items={agreement} onItems={setAgreement} sharedAt={sharedAt}
       onShare={() => setSharedAt(new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }).format(new Date()))} /></div>
     <div hidden={tab !== 'expenses'}><SharedExpenses /></div>
     <div hidden={tab !== 'rent'}><RentPayments /></div>
+    <div hidden={tab !== 'lease'}><Lease /></div>
     <div hidden={tab !== 'maintenance'}><Maintenance /></div>
     <div hidden={tab !== 'checklists'}><MoveChecklists checklists={checklists} onChecklist={(next) => setChecklists((current) => current.map((entry) => entry.id === next.id ? next : entry))} /></div>
   </main></>
