@@ -58,6 +58,13 @@
 .manager-application-feedback ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .manager-application-feedback li { display: grid; justify-items: start; gap: 6px; padding: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; font-size: 13px; }
 .manager-application-feedback form { gap: 12px; margin-top: 4px; }
+.manager-maintenance-actions { display: grid; gap: 14px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); }
+.manager-maintenance-actions form { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 10px; margin: 0; }
+.manager-maintenance-actions form:nth-of-type(3) { grid-template-columns: 1fr; }
+.manager-announcements ul { list-style: none; margin: 0; padding: 0 16px 16px; display: grid; gap: 12px; }
+.manager-announcements li { display: grid; gap: 4px; padding: 12px; border: 1px solid var(--line); border-radius: 6px; font-size: 13px; }
+.manager-announcements li span { color: var(--muted); font-size: 12px; }
+@media (max-width: 400px) { .manager-maintenance-actions form { grid-template-columns: 1fr; } }
 .manager-application-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 20px; }
 @media (max-width: 400px) {
   .manager-application-details, .manager-application-actions { grid-template-columns: 1fr; }
@@ -160,8 +167,8 @@ button.ops-tag { min-height: 36px; }
   .ops-main { display: block; }
   .ops-sidebar { display: flex; align-items: center; gap: 20px; padding: 0 0 16px; margin-bottom: 20px; border: 0; border-bottom: 1px solid var(--line); }
   .ops-organization { padding: 0; }
-  .ops-sidebar nav { display: flex; flex: 1; justify-content: flex-end; }
-  .ops-sidebar nav a { width: auto; min-width: 110px; }
+  .ops-sidebar nav { display: flex; flex: 1; flex-wrap: wrap; justify-content: flex-end; }
+  .ops-sidebar nav a { width: auto; min-width: 0; }
   .ops-sidebar-links { display: none; }
   .ops-heading-actions { gap: 10px; }
 }

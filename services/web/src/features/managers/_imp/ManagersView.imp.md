@@ -4,7 +4,7 @@
 
 - Status: `in-progress`
 - Milestone: interactive manager mockup
-- Updated: 2026-09-27
+- Updated: 2026-10-29
 - Routes: `/managers` (overview), `/managers/listings` and manager subpaths (workspace); `/managers?view=workspace` remains an alias
 - Source: [Product Features, items 32–35, 25–26, 40, and 43](<../../../../../../docs/Project Features.pdf>)
 
@@ -57,6 +57,7 @@ Both layouts reuse the same mutation handlers, notices, and ManagerDialog.
 State starts as independent copies of the fixture arrays.
 Updates replace records by stable ID. Summaries derive from the same records.
 In the workspace, ManagersView also owns the rental application records from `applications.mock.ts` and passes status and note handlers to ManagerWorkspace.
+It also owns the maintenance request records from `maintenance.mock.ts` and passes an update handler that appends a Pine Street Homes update and shows it as the notice.
 New listings receive a unique ID and always start as Draft.
 Workspace bulk pause/resume handlers exclude drafts and only change the selected IDs supplied by inventory.
 Draft creation and editing clear filters so the saved record stays visible.
@@ -93,7 +94,7 @@ The second layout's visual and interaction decisions are specified in `ManagerWo
 - Listing editors cover basic inventory fields. Fee itemization, photos, and authorization remain future work.
 - Published records and tour confirmations require server validation in production.
 - Manager roles, account switching, portfolio structure, and final service contracts remain TBD.
-- Applications, leases, payments, and resident maintenance belong to later mockups.
+- Leases and payments belong to later mockups. Applications and maintenance requests are in the workspace only.
 
 ## Completion checklist
 

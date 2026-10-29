@@ -3,7 +3,7 @@
 ## Metadata
 
 - Status: `complete`
-- Updated: 2026-09-27
+- Updated: 2026-10-29
 - File: `useManagerRoute.ts`
 
 ## Purpose and routes
@@ -20,6 +20,7 @@
 | `/managers/tours` | All tours |
 | `/managers/tours/pending` | Tours requiring confirmation |
 | `/managers/applications` | Rental applications for review |
+| `/managers/maintenance` | Maintenance requests and building announcements |
 
 The query `listing={id}` scopes activity to a listing and survives refresh.
 The earlier `/managers?view=workspace` URL remains a workspace entry alias.
