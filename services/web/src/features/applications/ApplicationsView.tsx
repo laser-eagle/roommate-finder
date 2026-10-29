@@ -6,6 +6,7 @@ import { useSavedHomes } from '../discovery/useSavedHomes'
 import { homes } from '../discovery/housing.data'
 import { applications } from './applications.data'
 import type { RentalApplication } from './applications.data'
+import { SharedDocuments } from './SharedDocuments'
 import './Applications.css'
 
 const homeFor = (application: RentalApplication) => homes.find((home) => home.id === application.homeId)
@@ -36,6 +37,7 @@ export function ApplicationsView() {
         <button type="button" className="application-details-button" onClick={() => setSelected(application)} aria-label={`View details for ${home?.title ?? 'application'}`}>View details<Icon name="arrow" /></button>
       </li>
     })}</ul>
+    <SharedDocuments />
     {selected && <PreviewDialog title="Application details" onClose={() => setSelected(null)}>
       <p className="dialog-context small">{selectedHome?.title ?? 'Listing unavailable'}<br /><span className="muted">Submitted {selected.submitted} · Status: {selected.status}</span></p>
       <section className="application-history" aria-labelledby="application-history-heading">

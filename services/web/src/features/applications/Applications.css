@@ -32,8 +32,21 @@
 .application-history ol, .application-messages ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
 .application-history li { display: flex; justify-content: space-between; gap: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); font-size: 14px; }
 .application-messages li { display: grid; gap: 2px; padding: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+.shared-documents { display: grid; gap: 16px; margin-top: 56px; }
+.shared-documents-heading { display: grid; gap: 8px; }
+.shared-documents-heading h2 { font-size: 32px; line-height: 40px; }
+.shared-documents-notice:empty { display: none; }
+.shared-documents-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.shared-document { display: grid; gap: 16px; padding: 20px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+.shared-document h3 { font: 600 16px/24px var(--sans); }
+.document-grants { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.document-grants li { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+.document-grants li > div { display: grid; gap: 2px; min-width: 0; }
+.document-revoke-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 12px; margin-top: 20px; }
 @media (max-width: 599px) {
   .applications-heading h1 { font-size: 42px; line-height: 48px; }
   .applications-item { grid-template-columns: 1fr; gap: 12px; padding: 20px; }
   .application-status { justify-self: start; }
+  .shared-document { padding: 20px; }
+  .document-grants .button { width: 100%; }
 }
