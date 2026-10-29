@@ -31,7 +31,18 @@
 .household-attach:focus-within { outline: 3px solid var(--brand); outline-offset: 4px; }
 .household-item-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; width: 100%; }
 .household-item-form label { display: grid; gap: 6px; font-size: 13px; font-weight: 500; }
-.household-item-form input, .household-item-form select { width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid #bac5bb; border-radius: 4px; background: var(--surface); font-size: 14px; }
+.household-item-form input:not([type='file']), .household-item-form select { width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid #bac5bb; border-radius: 4px; background: var(--surface); font-size: 14px; }
+.household-wide { grid-column: 1 / -1; }
+.household-item-form textarea { width: 100%; padding: 10px 12px; border: 1px solid #bac5bb; border-radius: 4px; background: var(--surface); font-size: 14px; resize: vertical; }
+.household-radio { display: flex; flex-wrap: wrap; gap: 16px; margin: 0; padding: 0; border: 0; font-size: 13px; }
+.household-radio legend { width: 100%; margin-bottom: 6px; font-weight: 500; }
+.household-item-form .household-radio label { display: inline-flex; align-items: center; gap: 8px; min-height: 36px; }
+.household-radio input { width: 18px; min-height: 0; height: 18px; accent-color: var(--brand); }
+.household-photo-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.maintenance-status { margin-left: 6px; padding: 2px 8px; border-radius: 20px; background: var(--brand-soft); color: var(--brand); font-size: 11px; font-weight: 600; }
+.maintenance-status.is-open { background: #fbf2e2; color: #825825; }
+.maintenance-status.is-closed { background: var(--warm); color: var(--muted); }
+.maintenance-updates { margin: 4px 0 0; padding-left: 18px; display: grid; gap: 2px; }
 .household-form-actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
 .household-checklist-summary { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; }
 .household-checklist-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
@@ -46,5 +57,5 @@
   .household-heading h1 { font-size: 42px; line-height: 48px; }
   .household-panel { padding: 20px; }
   .household-item-form { grid-template-columns: 1fr; }
-  .household-item-form input, .household-item-form select { font-size: 16px; }
+  .household-item-form input:not([type='file']), .household-item-form select { font-size: 16px; }
 }
