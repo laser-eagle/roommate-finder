@@ -11,6 +11,7 @@ import { initialInquiries, initialListings, initialTours } from './managers.mock
 import { initialApplications } from './applications.mock'
 import { initialManagerRequests } from './maintenance.mock'
 import { initialTeam } from './team.mock'
+import { initialLeases, leaseLandlord } from './leases.mock'
 import type { ManagedListing, ManagerDialog as DialogState } from './managers.mock'
 import { useSavedHomes } from '../discovery/useSavedHomes'
 import './ManagersView.css'
@@ -23,6 +24,7 @@ export function ManagersView() {
   const [applications, setApplications] = useState(() => structuredClone(initialApplications))
   const [requests, setRequests] = useState(() => structuredClone(initialManagerRequests))
   const [team, setTeam] = useState(() => structuredClone(initialTeam))
+  const [leases, setLeases] = useState(() => structuredClone(initialLeases))
   const [filter, setFilter] = useState<ListingFilter>('All')
   const [query, setQuery] = useState('')
   const [dialog, setDialog] = useState<DialogState | null>(null)
@@ -68,7 +70,8 @@ export function ManagersView() {
 
   return <>
     <SiteHeader savedCount={savedIds.length} />
-    {workspace ? <ManagerWorkspace listings={listings} inquiries={inquiries} tours={tours} applications={applications} requests={requests} team={team} notice={notice}
+    {workspace ? <ManagerWorkspace listings={listings} inquiries={inquiries} tours={tours} applications={applications} requests={requests} team={team} leases={leases} notice={notice}
+      onLeaseSign={(id) => { const signed = new Intl.DateTimeFormat('en-US', { month: 'long', day: 'numeric', year: 'numeric' }).format(new Date()); setLeases((current) => current.map((lease) => lease.id === id ? { ...lease, status: 'Signed', signedCopy: lease.copyName, signers: lease.signers.map((signer) => signer.name === leaseLandlord ? { ...signer, signed } : signer) } : lease)); setNotice('Lease signed. The signed copy was shared with every party.') }}
       onTeamAdd={(member) => { setTeam((current) => [...current, member]); setNotice(`Invitation sent to ${member.email}.`) }}
       onTeamRemove={(id) => { const member = team.find((item) => item.id === id); setTeam((current) => current.filter((item) => item.id !== id)); if (member) setNotice(`${member.name} was removed from the team.`) }}
       onRequestUpdate={(id, change, update) => { setRequests((current) => current.map((request) => request.id === id ? { ...request, ...change, updates: [...request.updates, { id: `mu-${Date.now()}`, date: new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date()), author: 'Pine Street Homes', text: update }] } : request)); setNotice(update) }}

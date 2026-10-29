@@ -3,7 +3,7 @@ import type { MouseEvent } from 'react'
 
 export const managerPaths = {
   listings: '/managers/listings', vacant: '/managers/vacant', notices: '/managers/notices',
-  inquiries: '/managers/inquiries', tours: '/managers/tours', applications: '/managers/applications', maintenance: '/managers/maintenance', team: '/managers/team',
+  inquiries: '/managers/inquiries', tours: '/managers/tours', applications: '/managers/applications', leases: '/managers/leases', maintenance: '/managers/maintenance', team: '/managers/team',
   'pending-inquiries': '/managers/inquiries/pending', 'pending-tours': '/managers/tours/pending',
 } as const
 export type ManagerPage = keyof typeof managerPaths

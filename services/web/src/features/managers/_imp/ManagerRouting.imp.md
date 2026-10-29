@@ -20,6 +20,7 @@
 | `/managers/tours` | All tours |
 | `/managers/tours/pending` | Tours requiring confirmation |
 | `/managers/applications` | Rental applications for review |
+| `/managers/leases` | Leases, signatures, and renewal offers |
 | `/managers/maintenance` | Maintenance requests and building announcements |
 | `/managers/team` | Team members, roles, and permissions |
 

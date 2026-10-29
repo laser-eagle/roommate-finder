@@ -59,6 +59,7 @@ Updates replace records by stable ID. Summaries derive from the same records.
 In the workspace, ManagersView also owns the rental application records from `applications.mock.ts` and passes status and note handlers to ManagerWorkspace.
 It also owns the maintenance request records from `maintenance.mock.ts` and passes an update handler that appends a Pine Street Homes update and shows it as the notice.
 It also owns the team records from `team.mock.ts` and passes add and remove handlers that show a notice.
+It also owns the lease records from `leases.mock.ts` and passes a sign handler that records the landlord signature and shows a notice.
 New listings receive a unique ID and always start as Draft.
 Workspace bulk pause/resume handlers exclude drafts and only change the selected IDs supplied by inventory.
 Draft creation and editing clear filters so the saved record stays visible.
@@ -95,7 +96,7 @@ The second layout's visual and interaction decisions are specified in `ManagerWo
 - Listing editors cover basic inventory fields. Fee itemization, photos, and authorization remain future work.
 - Published records and tour confirmations require server validation in production.
 - Manager roles, account switching, portfolio structure, and final service contracts remain TBD.
-- Leases and payments belong to later mockups. Applications and maintenance requests are in the workspace only.
+- Payments belong to later mockups. Applications, leases, and maintenance requests are in the workspace only.
 
 ## Completion checklist
 

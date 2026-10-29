@@ -66,6 +66,8 @@
 .manager-announcements li span { color: var(--muted); font-size: 12px; }
 @media (max-width: 400px) { .manager-maintenance-actions form { grid-template-columns: 1fr; } }
 .manager-team-table td { font-size: 12px; }
+.manager-lease-renewal { margin-top: 16px; }
+.manager-lease-actions { display: grid; justify-items: start; gap: 12px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); }
 .manager-team-form fieldset { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 16px; margin: 0; padding: 12px 16px 16px; border: 1px solid var(--line); border-radius: 6px; }
 .manager-team-form legend { padding: 0 6px; font-size: 14px; font-weight: 600; }
 .manager-team-form fieldset label { display: flex; align-items: center; gap: 10px; min-height: 44px; font-size: 14px; }
