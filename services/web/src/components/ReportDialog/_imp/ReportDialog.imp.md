@@ -17,7 +17,7 @@ Let a user report a scam, misleading listing, harassment, or spam so an admin ca
 - [x] Require a reason; Submit report without one shows Choose a reason for your report.
 - [x] Confirm with Report received, the report number, the reason, and Status: Under review (step 6 and sub-variation 1).
 - [x] Use the shared tokens and button classes from `index.css`.
-- [ ] Save the report, link it to the content, and add it to the admin review queue (step 5).
+- [ ] Save the report, link it to the content, and add it to the admin review queue (step 5). The queue exists at `/admin/reports` with sample reports, but this dialog does not add to it.
 - [ ] When the reason is Harassment, offer to block the other user and show safety resources (extension 2a). The safety resource content is TBD.
 - [ ] Hide content that gets many reports in a short time until an admin reviews it (extension 5a).
 - [ ] Let users check the status of their reports after the dialog closes.

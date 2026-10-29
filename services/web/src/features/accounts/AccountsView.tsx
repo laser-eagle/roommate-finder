@@ -4,6 +4,7 @@ import { Icon } from '../../components/Icon'
 import { AccountProfile } from './AccountProfile'
 import { AccountHousing, AccountNotificationSettings } from './AccountPreferences'
 import { AccountSecurity } from './AccountSecurity'
+import { AccountModeration } from './AccountModeration'
 import { PasswordResetDialog } from './PasswordResetDialog'
 import { AccountProfileDialog } from './AccountProfileDialog'
 import { StudentVerificationDialog } from './StudentVerificationDialog'
@@ -14,7 +15,7 @@ import { authWindowMs, canEditPersonalDetails } from './personalDetailsAuth.mock
 import { useAccountRoute } from './useAccountRoute'
 import { useSavedHomes } from '../discovery/useSavedHomes'
 import { accountEmail, accountEmailVerified, accountSections, initialAccount } from './accounts.mock'
-import type { AccountSection, AccountSettings } from './accounts.mock'
+import type { AccountSettings, SettingsSection } from './accounts.mock'
 import './AccountsView.css'
 
 export function AccountsView() {
@@ -24,6 +25,7 @@ export function AccountsView() {
   const [dialog, setDialog] = useState<'profile' | 'password' | 'verify' | 'student' | null>(null)
   const [student, setStudent] = useState<StudentVerification | null>(null)
   const [editExpiresAt, setEditExpiresAt] = useState(0)
+  const [appealed, setAppealed] = useState(false)
   const onNavigate = useCallback(() => { setEditExpiresAt(0); setDialog(null); setNotice('') }, [])
   const { section, navigate } = useAccountRoute(onNavigate)
   const { savedIds } = useSavedHomes()
@@ -44,14 +46,14 @@ export function AccountsView() {
     return () => window.clearTimeout(timer)
   }, [editExpiresAt])
 
-  function update<K extends AccountSection>(key: K, value: AccountSettings[K]) {
+  function update<K extends SettingsSection>(key: K, value: AccountSettings[K]) {
     if (key === 'profile' && !canEditPersonalDetails(editExpiresAt)) return
     setDraft((current) => ({ ...current, [key]: value }))
     setNotice('')
   }
 
   function save() {
-    if (!section) return
+    if (!section || section === 'moderation') return
     if (section === 'profile' && !canEditPersonalDetails(editExpiresAt)) { setEditExpiresAt(0); setDialog('verify'); return }
     const value = section === 'profile' ? {
       ...draft.profile, fullName: draft.profile.fullName.trim(), displayName: draft.profile.displayName.trim(),
@@ -64,13 +66,13 @@ export function AccountsView() {
   }
 
   function discard() {
-    if (!section) return
+    if (!section || section === 'moderation') return
     setDraft((current) => ({ ...current, [section]: structuredClone(account[section]) }))
     setNotice('Unsaved changes discarded for this section.')
     if (section === 'profile') setEditExpiresAt(0)
   }
 
-  const dirty = !!section && JSON.stringify(draft[section]) !== JSON.stringify(account[section])
+  const dirty = !!section && section !== 'moderation' && JSON.stringify(draft[section]) !== JSON.stringify(account[section])
   const actions = { dirty, onSave: save, onDiscard: discard }
   const initials = account.profile.fullName.split(/\s+/).filter(Boolean).slice(0, 2).map((name) => name[0]).join('').toUpperCase()
   const moveIn = new Date(`${account.housing.moveIn}T12:00:00`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
@@ -88,12 +90,14 @@ export function AccountsView() {
           <a className="account-manager-link" href="/applications"><span className="eyebrow muted">Rental applications</span><span>My applications<Icon name="arrow" /></span></a>
           <a className="account-manager-link" href="/household"><span className="eyebrow muted">Your household</span><span>Household planning<Icon name="arrow" /></span></a>
           <a className="account-manager-link" href="/managers"><span className="eyebrow muted">Property management</span><span>Open manager workspace<Icon name="arrow" /></span></a>
+          <a className="account-manager-link" href="/admin/reports"><span className="eyebrow muted">Trust and safety</span><span>Open admin tools<Icon name="arrow" /></span></a>
         </aside>
         <div id="account-content" className="account-content">
           {section === 'profile' && <AccountProfile {...actions} value={draft.profile} editing={editExpiresAt > 0} onChange={(value) => update('profile', value)} onSecurity={(event) => navigate(event, 'privacy')} onEdit={() => setDialog('verify')} onLock={() => setEditExpiresAt(0)} />}
           {section === 'housing' && <AccountHousing {...actions} value={draft.housing} onChange={(value) => update('housing', value)} />}
           {section === 'notifications' && <AccountNotificationSettings {...actions} value={draft.notifications} onChange={(value) => update('notifications', value)} />}
           {section === 'privacy' && <AccountSecurity {...actions} visible={draft.privacy.profileVisible} onChange={(profileVisible) => update('privacy', { profileVisible })} onResetPassword={() => setDialog('password')} student={student} onVerifyStudent={() => setDialog('student')} />}
+          {section === 'moderation' && <AccountModeration appealed={appealed} onAppeal={() => { setAppealed(true); setNotice('Appeal submitted. An admin will review the decision again.') }} />}
           {!section && <section className="account-panel"><div className="account-panel-heading"><h2>Account page not found</h2><p className="small muted">Choose a section to manage your account.</p><a className="account-text-button" href="/account/personal" onClick={(event) => navigate(event, 'profile')}>Go to personal details<Icon name="arrow" /></a></div></section>}
         </div>
         <aside className="account-summary" aria-label="Account summary">

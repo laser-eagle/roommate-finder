@@ -4,9 +4,9 @@
 
 - Status: `in-progress`
 - Milestone: interactive account mockup
-- Updated: 2026-10-28
-- Routes: `/account/personal`, `/account/preferences`, `/account/notifications`, `/account/security`
-- Files: `AccountsView.tsx`, `AccountsView.css`, `AccountProfileDialog.tsx`, `accounts.mock.ts`, `useAccountRoute.ts`
+- Updated: 2026-10-29
+- Routes: `/account/personal`, `/account/preferences`, `/account/notifications`, `/account/security`, `/account/moderation`
+- Files: `AccountsView.tsx`, `AccountsView.css`, `AccountProfileDialog.tsx`, `AccountModeration.tsx`, `accounts.mock.ts`, `useAccountRoute.ts`
 
 ## Purpose and scope
 
@@ -16,7 +16,7 @@ All account details are fictional. React state and a fixture authentication adap
 
 ## Requirements
 
-- [x] Provide four account sections through keyboard-accessible links with distinct URLs.
+- [x] Provide five account sections through keyboard-accessible links with distinct URLs.
 - [x] Support direct navigation, refresh, Back/Forward, and native modified-click behavior.
 - [x] Resolve `/account`, `/accounts`, plural section aliases, and trailing slashes to canonical paths.
 - [x] Show an account-specific missing-page state for an unknown section.
@@ -31,9 +31,12 @@ All account details are fictional. React state and a fixture authentication adap
 - [x] Show locked personal details, an edit icon, and a verified email indicator.
 - [x] Require successful fixture verification before changing or saving personal details.
 - [x] Relock on save, discard, manual lock, section navigation, refresh, or five-minute expiry.
-- [x] Link to My applications (`/applications`) and Household planning (`/household`) from the sidebar, above the manager workspace link.
+- [x] Link to My applications (`/applications`) and Household planning (`/household`) from the sidebar, above the manager workspace link. Link to the admin tools (`/admin/reports`) below it.
 - [x] Hold the student verification result and show the verified-student badge in the sidebar identity, Security & privacy, and the Your profile dialog (SRS Feature 24).
 - [x] Show the user's references in the profile dialog and offer Request a reference with an email field and a confirmation.
+- [x] Moderation: show a decision on the user's content (community post Room swap for November?, report RPT-2027, removed for spam on October 26, 2026) with an appeal form; a reason is required, and submitting shows Appeal submitted · Under review and a notice (SRS Feature 33; prototype checklist item 2.23).
+- [ ] Send appeals to the admin Appeals queue and show the admin's outcome.
+- [ ] Show the admin tools link only to admin accounts.
 - [ ] Connect an authenticated account and persistent settings.
 
 ## Usage
@@ -57,6 +60,7 @@ Section transitions preserve saved values and drafts while revoking personal-det
 | useAccountRoute | Canonical section paths, navigation, and browser history |
 | AccountPreferences | Housing preferences and notification forms |
 | AccountSecurity | Sign-in overview and profile visibility |
+| AccountModeration | Moderation decisions on the user's content and the appeal form |
 | PasswordResetDialog | Reset-link request and email confirmation states |
 | StudentVerificationDialog | Campus email code or verification-service flow for the verified-student badge |
 | AccountProfileDialog | Public profile preview, the user's references, and the Request a reference form and confirmation |
@@ -64,6 +68,7 @@ Section transitions preserve saved values and drafts while revoking personal-det
 | accounts.mock.ts | Types, section labels, fictional initial settings, and the user's sample reference |
 | SiteHeader / PreviewDialog | Shared navigation and dialog behavior |
 
+Moderation is not a settings section: it has no save bar, and save, discard, and unsaved-change checks skip it. `SettingsSection` names the four settings sections; `AccountSection` adds `moderation`. AccountsView keeps whether the appeal was submitted until refresh. The decision sample comes from `admin/moderation.data.ts`.
 The page owns separate draft and saved objects. Each object groups values by section.
 Save replaces one saved section. Discard restores one draft section from saved values.
 Profile saves trim text. Native form validation checks required names, locations, dates, and budget limits.

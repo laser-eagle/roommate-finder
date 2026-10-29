@@ -80,6 +80,10 @@
 .account-security-block p, .account-private-details p { font-size: 12px; margin-top: 6px; overflow-wrap: anywhere; }
 .account-security-block .button { margin-top: 20px; font-size: 12px; }
 .account-security-block { border-bottom: 1px solid var(--line); padding-bottom: 24px; }
+.account-moderation-decision { border-bottom: 0; padding-bottom: 0; }
+.account-moderation-decision .account-status { margin-top: 16px; }
+.account-moderation-appeal { display: grid; gap: 12px; margin-top: 20px; }
+.account-moderation-appeal .button { justify-self: start; margin-top: 0; }
 .account-session { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; padding: 16px; border: 1px solid var(--line); border-radius: 4px; }
 .account-session p { font-size: 11px; }
 .account-session-icon { font-size: 26px; color: var(--muted); }

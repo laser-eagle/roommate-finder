@@ -10,6 +10,7 @@ import { ShortlistView } from './features/shortlist/ShortlistView'
 import { ApplicationFormView } from './features/applications/ApplicationFormView'
 import { ApplicationsView } from './features/applications/ApplicationsView'
 import { HouseholdView } from './features/household/HouseholdView'
+import { AdminView } from './features/admin/AdminView'
 
 export default function App() {
   const path = window.location.pathname.replace(/\/+$/, '') || '/'
@@ -23,6 +24,7 @@ export default function App() {
   if (path === '/household') return <HouseholdView />
   if (/^\/accounts?(\/|$)/.test(path)) return <AccountsView />
   if (/^\/managers(\/|$)/.test(path)) return <ManagersView />
+  if (/^\/admin(\/|$)/.test(path)) return <AdminView />
   if (path === '/listings' || path === '/saved' || path === '/roommates' || path === '/community') {
     return <DiscoveryView page={path.slice(1) as 'listings' | 'saved' | 'roommates' | 'community'} />
   }

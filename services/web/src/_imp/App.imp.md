@@ -4,7 +4,7 @@
 
 - Status: `complete`
 - Scope: route selection for the current mockups
-- Updated: 2026-10-28
+- Updated: 2026-10-29
 - File: `App.tsx`
 
 ## Purpose and usage
@@ -23,6 +23,7 @@
 - [x] Select ApplicationsView for `/applications`, including a trailing slash.
 - [x] Select HouseholdView for `/household`, including a trailing slash.
 - [x] Select ManagersView for the `/managers` prefix, including workspace detail paths.
+- [x] Select AdminView for the `/admin` prefix.
 - [x] Select AccountsView for `/account` and `/accounts` prefixes, including section paths.
 - [x] Select DiscoveryView for Homes, Saved, Roommates, and Community, with optional trailing slashes.
 - [x] Delegate listing IDs and unknown paths to ListingDetailView.

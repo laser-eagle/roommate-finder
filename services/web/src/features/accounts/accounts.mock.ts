@@ -1,6 +1,7 @@
 import type { Reference } from '../../components/References/ReferenceList'
 
-export type AccountSection = 'profile' | 'housing' | 'notifications' | 'privacy'
+export type SettingsSection = 'profile' | 'housing' | 'notifications' | 'privacy'
+export type AccountSection = SettingsSection | 'moderation'
 
 export interface AccountProfile {
   fullName: string
@@ -39,6 +40,7 @@ export const accountSections: { id: AccountSection; label: string; path: string 
   { id: 'housing', label: 'Housing preferences', path: '/account/preferences' },
   { id: 'notifications', label: 'Notifications', path: '/account/notifications' },
   { id: 'privacy', label: 'Security & privacy', path: '/account/security' },
+  { id: 'moderation', label: 'Moderation', path: '/account/moderation' },
 ]
 
 export const initialAccount: AccountSettings = {
