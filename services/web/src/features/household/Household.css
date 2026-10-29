@@ -1,0 +1,44 @@
+.household-main { padding-block: 36px 96px; }
+.household-heading { display: grid; gap: 12px; margin-bottom: 24px; }
+.household-heading h1 { font-size: 52px; line-height: 60px; }
+.household-heading a { color: var(--brand); font-weight: 600; }
+.household-switch { display: inline-flex; flex-wrap: wrap; padding: 3px; border: 1px solid var(--line); border-radius: 5px; background: var(--surface); }
+.household-switch button { min-height: 40px; padding: 0 16px; border: 0; border-radius: 3px; background: transparent; font-size: 14px; color: var(--muted); }
+.household-switch [aria-pressed='true'] { background: var(--brand-soft); color: var(--brand); font-weight: 600; }
+.household-tabs { margin-bottom: 24px; }
+.household-agreement, .household-checklists { display: grid; gap: 20px; }
+.household-checklists > .household-switch { justify-self: start; }
+.household-share { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.household-panel { display: grid; gap: 14px; padding: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+.household-panel h2 { font-size: 24px; line-height: 30px; }
+.household-items { list-style: none; margin: 0; padding: 0; display: grid; }
+.household-items > li { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-block: 12px; border-top: 1px solid var(--line); }
+.household-items > li:first-child { border-top: 0; padding-top: 0; }
+.household-item-main { display: grid; gap: 4px; min-width: 0; flex: 1 1 260px; }
+.household-check { display: flex; align-items: center; gap: 10px; min-height: 32px; cursor: pointer; }
+.household-check input { width: 20px; height: 20px; margin: 0; flex-shrink: 0; accent-color: var(--brand); }
+.household-check .is-done { color: var(--muted); text-decoration: line-through; }
+.household-item-actions { display: flex; gap: 12px; }
+.household-text-button { min-height: 36px; padding: 0; border: 0; background: transparent; color: var(--brand); font-size: 13px; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
+.household-attach { display: inline-flex; align-items: center; min-height: 40px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 5px; background: var(--surface); font-size: 13px; font-weight: 600; cursor: pointer; }
+.household-attach:hover { background: var(--brand-soft); border-color: var(--brand); }
+.household-attach:focus-within { outline: 3px solid var(--brand); outline-offset: 4px; }
+.household-item-form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; width: 100%; }
+.household-item-form label { display: grid; gap: 6px; font-size: 13px; font-weight: 500; }
+.household-item-form input, .household-item-form select { width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid #bac5bb; border-radius: 4px; background: var(--surface); font-size: 14px; }
+.household-form-actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.household-checklist-summary { display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px; }
+.household-checklist-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; align-items: start; }
+.household-dates { display: grid; gap: 12px; }
+.household-dates div { display: flex; justify-content: space-between; gap: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+.household-dates dt { font-size: 14px; color: var(--muted); }
+.household-dates dd { font-size: 14px; font-weight: 600; text-align: right; }
+@media (max-width: 959px) {
+  .household-checklist-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 599px) {
+  .household-heading h1 { font-size: 42px; line-height: 48px; }
+  .household-panel { padding: 20px; }
+  .household-item-form { grid-template-columns: 1fr; }
+  .household-item-form input, .household-item-form select { font-size: 16px; }
+}

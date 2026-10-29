@@ -21,6 +21,7 @@
 - [x] Select ShortlistView for `/shortlist`, including a trailing slash.
 - [x] Select ApplicationFormView for `/listings/{id}/apply` before the listing-detail fallback.
 - [x] Select ApplicationsView for `/applications`, including a trailing slash.
+- [x] Select HouseholdView for `/household`, including a trailing slash.
 - [x] Select ManagersView for the `/managers` prefix, including workspace detail paths.
 - [x] Select AccountsView for `/account` and `/accounts` prefixes, including section paths.
 - [x] Select DiscoveryView for Homes, Saved, Roommates, and Community, with optional trailing slashes.

@@ -86,6 +86,7 @@ export function AccountsView() {
           <nav aria-label="Account sections">{accountSections.map((item) => <a key={item.id} href={item.path} aria-current={section === item.id ? 'page' : undefined} aria-controls="account-content" onClick={(event) => navigate(event, item.id)}>
             <span>{item.label}</span><Icon name="arrow" /></a>)}</nav>
           <a className="account-manager-link" href="/applications"><span className="eyebrow muted">Rental applications</span><span>My applications<Icon name="arrow" /></span></a>
+          <a className="account-manager-link" href="/household"><span className="eyebrow muted">Your household</span><span>Household planning<Icon name="arrow" /></span></a>
           <a className="account-manager-link" href="/managers"><span className="eyebrow muted">Property management</span><span>Open manager workspace<Icon name="arrow" /></span></a>
         </aside>
         <div id="account-content" className="account-content">

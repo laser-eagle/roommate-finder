@@ -9,6 +9,7 @@ import { BusinessProfileView } from './features/business/BusinessProfileView'
 import { ShortlistView } from './features/shortlist/ShortlistView'
 import { ApplicationFormView } from './features/applications/ApplicationFormView'
 import { ApplicationsView } from './features/applications/ApplicationsView'
+import { HouseholdView } from './features/household/HouseholdView'
 
 export default function App() {
   const path = window.location.pathname.replace(/\/+$/, '') || '/'
@@ -19,6 +20,7 @@ export default function App() {
   if (path === '/shortlist') return <ShortlistView />
   if (/^\/listings\/[^/]+\/apply$/.test(path)) return <ApplicationFormView />
   if (path === '/applications') return <ApplicationsView />
+  if (path === '/household') return <HouseholdView />
   if (/^\/accounts?(\/|$)/.test(path)) return <AccountsView />
   if (/^\/managers(\/|$)/.test(path)) return <ManagersView />
   if (path === '/listings' || path === '/saved' || path === '/roommates' || path === '/community') {

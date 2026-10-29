@@ -31,7 +31,7 @@ All account details are fictional. React state and a fixture authentication adap
 - [x] Show locked personal details, an edit icon, and a verified email indicator.
 - [x] Require successful fixture verification before changing or saving personal details.
 - [x] Relock on save, discard, manual lock, section navigation, refresh, or five-minute expiry.
-- [x] Link to My applications (`/applications`) from the sidebar, above the manager workspace link.
+- [x] Link to My applications (`/applications`) and Household planning (`/household`) from the sidebar, above the manager workspace link.
 - [x] Hold the student verification result and show the verified-student badge in the sidebar identity, Security & privacy, and the Your profile dialog (SRS Feature 24).
 - [x] Show the user's references in the profile dialog and offer Request a reference with an email field and a confirmation.
 - [ ] Connect an authenticated account and persistent settings.
