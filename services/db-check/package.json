@@ -1,0 +1,16 @@
+{
+  "name": "db-check",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Saves a row to the team PostgreSQL database and reads it back.",
+  "engines": {
+    "node": ">=20.12"
+  },
+  "scripts": {
+    "check": "node db-check.mjs"
+  },
+  "dependencies": {
+    "pg": "^8.23.1"
+  }
+}
